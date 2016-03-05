@@ -13,13 +13,14 @@
 #ifndef LST_H_
 #define LST_H_
 
+#include <stdio.h>
 
 /* 
  * The full enumeration of types of nodes in a Logic Syntax Tree.
  */
 typedef enum { 
-              KB_ROOT_N, PREDICATE_N, FUNCTION_N, LITERAL_N, COMPLEX_SENTENCE_N,
-              ATOMIC_SENTENCE_N, NEGATION_N, CONJUNCTION_N, DISJUNCTION_N, 
+              NULL_N, KB_ROOT_N, RELATION_N, FUNCTION_N, CONSTANT_N, VARIABLE_N,
+              NEGATION_N, CONJUNCTION_N, DISJUNCTION_N, EQUALS_N,
               IMPLICATION_N, EQUIVALENCE_N, Q_EXISTS_N, Q_FORALL_N
 } lst_node_type;
 
@@ -29,28 +30,30 @@ typedef struct {
         char *name;
 } val_name_pair;
 
+
 /*
  * A table of lst_node_type -> string representation pairs
  * NOTE: These must be in the same order as the enumerated values in the
  *  ast_node_type.
  */
 static val_name_pair token_table[] = {
+    { NULL_N, "NULL" },
     { KB_ROOT_N, "ROOT" },
-    { PREDICATE_N, "PREDICATE" },
+    { RELATION_N, "RELATION" },
     { FUNCTION_N, "FUNCTION" },
-    { LITERAL_N, "LITERAL" },
-    { COMPLEX_SENTENCE_N, "COMPLEX_SENTENCE" },
-    { ATOMIC_SENTENCE_N, "ATOMIC_SENTENCE" },
+    { CONSTANT_N, "CONSTANT" },
+    { VARIABLE_N, "VARIABLE" },
     { NEGATION_N, "~" },
     { CONJUNCTION_N, "^" },
     { DISJUNCTION_N, "v" },
+    { EQUALS_N, "=" },
     { IMPLICATION_N, "=>" },
     { EQUIVALENCE_N, "<=>" },
     { Q_EXISTS_N, "#" },
     { Q_FORALL_N, "@" }
 };
 
-#define NODE_INDEX(X)    ( (X) - ROOT_N)
+#define NODE_INDEX(X)    ( (X) - NULL_N)
 #define NODE_NAME(X)     ( token_table[ NODE_INDEX((X)) ].name)
 
 /* 
@@ -72,7 +75,21 @@ lst_node create_lst_node(lst_node_type type);
 
 /* Print the contents of a subtree of an abstract syntax tree, given
    the root of the subtree and the depth of the subtree root. */
-/*
-void print_lst(FILE *fp, ast_node root, int depth);
-*/
+void print_lst(FILE *fp, lst_node root, int depth);
+
+
+typedef struct symlist_node {
+        char *name;
+        lst_node_type dec_type;
+        struct symlist_node *next;
+        struct symlist_node *prev;
+} symlist_node;
+
+symlist_node *create_listnode(char *name);
+
+symlist_node *append_symlist(symlist_node *list, char *name);
+
+lst_node_type lookup_symbol_type(symlist_node *list, char *name);
+
+void print_symbol_list(FILE *fp, symlist_node *list);
 #endif // LST_H_

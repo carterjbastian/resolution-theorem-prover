@@ -8,7 +8,7 @@ VS: c;
 FS: S;
 FS: Add;
 
-NatNum(0)
+NatNum(0);
 @n NatNum(n) => NatNum(S(n));
 @n ~(0 = S(n));
 @n @m ~(m = n) => ~(S(m) = S(n));

@@ -16,6 +16,8 @@
 
 #define MAXTOKENLENGTH 201
 #define YYSTYPE lst_node
+
+extern YYSTYPE yylval;
 %}
 
 white [ \t\n]+
@@ -51,11 +53,9 @@ id ({letter}|{digit}|_)*
 ","           return ',';
 "="           return '=';
 
-<<EOF>>       return EOF_T;
-
 {id}          {
-              /*lst_node n = create_lst_node(0);
+              lst_node n = create_lst_node(NULL_N);
               n->value_string = strdup(yytext);
-              yylval = n; */
+              yylval = n;
               return ID_T; }
 
