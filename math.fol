@@ -15,5 +15,4 @@ NatNum(0)
 @m NatNum(m) => Add(0, m) = m;
 @m @n NatNum(m) ^ NatNum(n) => Add(S(m), n) =  S(Add(m,n));
 
-QS: @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a)
-
+QS: @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a);
