@@ -1,0 +1,19 @@
+CS: 0;
+RS: NatNum;
+VS: n;
+VS: m;
+VS: a;
+VS: b;
+VS: c;
+FS: S;
+FS: Add;
+
+NatNum(0)
+@n NatNum(n) => NatNum(S(n));
+@n ~(0 = S(n));
+@n @m ~(m = n) => ~(S(m) = S(n));
+@m NatNum(m) => Add(0, m) = m;
+@m @n NatNum(m) ^ NatNum(n) => Add(S(m), n) =  S(Add(m,n));
+
+QS: @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a)
+

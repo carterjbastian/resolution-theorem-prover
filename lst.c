@@ -16,4 +16,8 @@
 // Local Includes
 #include "lst.h"
 
-
+lst_node create_lst_node(lst_node_type type) {
+  lst_node new_node = calloc(1, sizeof(struct lst_node_struct));
+  new_node->node_type = type;
+  return new_node;
+}

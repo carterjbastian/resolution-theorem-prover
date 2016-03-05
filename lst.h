@@ -68,7 +68,7 @@ struct lst_node_struct {
 
 /* Create a node with a given token type and return a pointer to the
    node. */
-lst_node create_lst_node(lst_node_type node_type);
+lst_node create_lst_node(lst_node_type type);
 
 /* Print the contents of a subtree of an abstract syntax tree, given
    the root of the subtree and the depth of the subtree root. */
