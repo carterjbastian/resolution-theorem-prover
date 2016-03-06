@@ -10,7 +10,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "lst.h"
+#include "transformations.h"
 
 lst_node root = NULL;
 lst_node query = NULL;
@@ -41,13 +43,23 @@ int main() {
   // else
     fprintf(stderr, "Parsing reached fatal error. No AST was constructed\n");
 
+/*
   fprintf(stdout, "SYMBOL LIST:\n");
   print_symbol_list(stdout, symbol_list);
-  
+
   fprintf(stdout, "\n\nKNOWLEDGE BASE:\n");
   print_lst(stdout, root, 0);
+*/
 
-  fprintf(stdout, "\n\nQUERY:\n");
+  fprintf(stdout, "\n\nQUERY (before transformation):\n");
+  print_lst(stdout, query, 0);
+
+  // Apply CNF transformations
+  adoption_agency(query);
+  remove_equivalence(query);
+  remove_implies(query);
+
+  fprintf(stdout, "\n\nQUERY (after transformation):\n");
   print_lst(stdout, query, 0);
 
   return 0;

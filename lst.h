@@ -64,9 +64,8 @@ static val_name_pair token_table[] = {
 typedef struct lst_node_struct *lst_node;
 struct lst_node_struct {
   lst_node_type node_type;
-  lst_node left_child, right_sib;
+  lst_node left_child, right_sib, parent;
   char *value_string;
-  int lineno;                   /* Line number for var declarations */  
 };
 
 /* Create a node with a given token type and return a pointer to the

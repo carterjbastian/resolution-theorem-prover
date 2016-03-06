@@ -1,5 +1,5 @@
 /*
- * lst.h    Implements the data types for a Logic Syntax Tree
+ * lst.c    Implements the data types for a Logic Syntax Tree
  *
  * Author:  Carter J. Bastian
  *          March, 2016. 16W.
