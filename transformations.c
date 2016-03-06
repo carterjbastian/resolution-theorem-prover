@@ -89,6 +89,8 @@ lst_node remove_implies(lst_node root) {
     root->left_child->parent = inserted_neg;
     
     inserted_neg->left_child = root->left_child;
+    inserted_neg->right_sib = root->left_child->right_sib; // Move the sibling up
+    root->left_child->right_sib = NULL; // Cancel old link
     root->left_child = inserted_neg;
   
   }
@@ -101,27 +103,103 @@ lst_node remove_implies(lst_node root) {
 }
 
 lst_node move_negation_inward(lst_node root) {
-  // if root is negation
-    // if child is negation
-      // remove both root and child
+  if (root->node_type == NEGATION_N) { // if root is negation
+    lst_node new_child;
 
-    // if child is conjunction
-      // remove self
-      // change child to disjunction
-      // insert negation node before each of child's children
+    lst_node new_neg1;
+    lst_node new_neg2;
 
-    // if child is disjunction
-      // remove self
-      // change child to conjunction
-      // insert negation node before each of child's children
+    switch(root->left_child->node_type) {
+      // if child is negation
+      case NEGATION_N:
+        //fprintf(stdout, "Found case 1, Negation\n");
+        // remove both root and child by setting them to NULL_N
+        root->node_type = NULL_N;
+        root->left_child->node_type = NULL_N;
+        break;
 
-    // if child is universal quantifier
-      // change self to existential quantifier
-      // change child to negation
+      // if child is conjunction
+      case CONJUNCTION_N:
+        //fprintf(stdout, "Found case 2, Conjunction\n");
+        // remove self
+        root->node_type = NULL_N;
 
-    // if child is existential quantifier
-      // change self to universal quantifier
-      // change child to negation
+        // change child to disjunction
+        root->left_child->node_type = DISJUNCTION_N;
+
+        // insert negation node before each of child's children
+        new_neg1 = create_lst_node(NEGATION_N);
+        new_neg2 = create_lst_node(NEGATION_N);
+
+        new_neg1->left_child = root->left_child->left_child;
+        new_neg1->parent = root->left_child; // Set up links for new node
+        root->left_child->left_child->parent = new_neg1;
+        root->left_child->left_child = new_neg1; // update links to new node
+
+        new_neg2->left_child = root->left_child->left_child->left_child->right_sib; 
+        new_neg2->parent = root->left_child; // Set up links for new node
+        new_neg2->left_child->parent = new_neg2;
+        root->left_child->left_child->right_sib = new_neg2; // Update links to new node
+        root->left_child->left_child->left_child->right_sib = NULL; // Delete the old link
+
+        break;
+
+      // if child is disjunction
+      case DISJUNCTION_N:
+        //fprintf(stdout, "Found case 3, disjunction\n");
+        // remove self
+        root->node_type = NULL_N;
+
+        // change child to disjunction
+        root->left_child->node_type = CONJUNCTION_N;
+
+        // insert negation node before each of child's children
+        new_neg1 = create_lst_node(NEGATION_N);
+        new_neg2 = create_lst_node(NEGATION_N);
+
+        new_neg1->left_child = root->left_child->left_child;
+        new_neg1->parent = root->left_child; // Set up links for new node
+        root->left_child->left_child->parent = new_neg1;
+        root->left_child->left_child = new_neg1; // update links to new node
+
+        new_neg2->left_child = root->left_child->left_child->left_child->right_sib; 
+        new_neg2->parent = root->left_child; // Set up links for new node
+        new_neg2->left_child->parent = new_neg2;
+        root->left_child->left_child->right_sib = new_neg2; // Update links to new node
+        root->left_child->left_child->left_child->right_sib = NULL; // Delete the old link
+
+        break;
+
+      // if child is universal quantifier
+      case Q_FORALL_N:
+        //fprintf(stdout, "Found case 4, Universal Quantifier\n");
+        // change self to existential quantifier
+        root->node_type = Q_EXISTS_N;
+        root->value_string = root->left_child->value_string; // Copy the variable name
+
+        // change child to negation
+        root->left_child->node_type = NEGATION_N;
+        root->left_child->value_string = NULL;
+
+        break;
+
+      // if child is existential quantifier
+      case Q_EXISTS_N:
+        //fprintf(stdout, "Found case 5, Existential Quantifier\n");
+        // change self to universal quantifier
+        root->node_type = Q_FORALL_N;
+        root->value_string = root->left_child->value_string; // Copy the variable name
+
+        // change child to negation
+        root->left_child->node_type = NEGATION_N;
+        root->left_child->value_string = NULL;
+
+        break;
+
+      default :
+        ; //fprintf(stdout, "hit the default\n"); // Do nothing
+    }
+  }
     
   // recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
