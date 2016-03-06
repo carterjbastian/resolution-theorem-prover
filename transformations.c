@@ -236,7 +236,11 @@ lst_node skolemize(lst_node root) {
 
 lst_node drop_universal_quantifier(lst_node root) {
   // If root is universal quantifier
+  if (root->node_type == Q_FORALL_N) {
     // Delete self
+    root->node_type = NULL_N;
+    root->value_string = NULL;
+  }
 
   // Recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
@@ -245,29 +249,77 @@ lst_node drop_universal_quantifier(lst_node root) {
   return root;
 }
 
-lst_node distribute_conjunction(lst_node root) {
+lst_node distribute_disjunction(lst_node root) {
   // if root is disjunction
+  if (root->node_type == DISJUNCTION_N) {
+
     // if right child is conjunction (CUTE HACK)
-      // switch left and right child
+    if (root->left_child->right_sib->node_type == CONJUNCTION_N) {
+      // switch left and right child to avoid having two cases.
+      // This algorithm works the same on cases where both nodes are conjunction
+      root->left_child->right_sib->right_sib = root->left_child;
+      root->left_child = root->left_child->right_sib;
+      root->left_child->right_sib->right_sib = NULL;
+    }
 
     // if left child is conjunction
-      // distributed1 = subtreeCopy(right child)
-      // distributed2 = subtreeCopy(right child)
-      // grandchild1 = left_child->left_child
-      // grandchild2 = left_child->right_child
+    if (root->left_child->node_type == CONJUNCTION_N) {
+      // Make two copies of the right child (to be distributed)
+        // distributed1 = subtreeCopy(right child)
+        // distributed2 = subtreeCopy(right child)
+        // grandchild1 = left_child->left_child
+        // grandchild2 = left_child->right_child
 
-      // Change self to conjunction
-      // left child <- disjunction
-      // right child <- disjunction
-      // left child->left child <- grandchild1
-      // left child->right child <- distributed1
-      // right child->left child <- grandchild2
-      // right child->right child <- distributed2
+      lst_node distrib1 = copy_tree(root->left_child->right_sib);
+      distrib1->right_sib = NULL;
+      lst_node distrib2 = copy_tree(root->left_child->right_sib);
+      distrib2->right_sib = NULL;
+
+      lst_node grandchild1 = root->left_child->left_child;
+      lst_node grandchild2 = root->left_child->left_child->right_sib;
+
+      lst_node disjunct1 = create_lst_node(DISJUNCTION_N);
+      lst_node disjunct2 = create_lst_node(DISJUNCTION_N);
+
+
+      // Change self to conjunction with two child disjunctions
+        // left child <- disjunction
+        // right child <- disjunction
+        // left child->left child <- grandchild1
+        // left child->right child <- distributed1
+        // right child->left child <- grandchild2
+        // right child->right child <- distributed2
+
+      root->node_type = CONJUNCTION_N;
+      root->left_child = disjunct1;
+      root->left_child->right_sib = disjunct2;
+
+      root->left_child->left_child = grandchild1;
+      root->left_child->left_child->right_sib = distrib1;
+      
+      root->left_child->right_sib->left_child = grandchild2;
+      root->left_child->right_sib->left_child->right_sib = distrib2;
+
+      // Update parent links
+      grandchild2->parent = root->left_child->right_sib;
+      distrib2->parent = root->left_child->right_sib;
+
+      grandchild1->parent = root->left_child;
+      distrib1->parent = root->left_child;
+
+      root->left_child->right_sib->parent = root;
+      root->left_child->parent = root;
+    }
+  }
 
   // Recurse on all children
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
-    distribute_conjunction(curr);
+    distribute_disjunction(curr);
 
+  return root;
+}
+
+lst_node clean_tree(lst_node root) {
   return root;
 }
 

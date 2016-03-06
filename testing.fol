@@ -27,4 +27,4 @@ NatNum(0);
 @x @y x = y => (S(x) = S(y));
 @w @x @y @z w = y ^ x = z => (Add(w,x) = Add(y,x));
 
-QS: ~ @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a);
+QS: @a @b @c @x (a ^ x) v (b ^ c);

@@ -59,7 +59,10 @@ int main() {
   remove_implies(query);
 
   move_negation_inward(query);
-
+  //standardize_variables(query);
+  //skolemize(query);
+  drop_universal_quantifier(query);
+  distribute_disjunction(query);
   fprintf(stdout, "\n\nQUERY (after transformation):\n");
   print_lst(stdout, query, 0);
 

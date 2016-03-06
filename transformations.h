@@ -18,6 +18,6 @@ lst_node move_negation_inward(lst_node root);
 lst_node standardize_variables(lst_node root);
 lst_node skolemize(lst_node root);
 lst_node drop_universal_quantifier(lst_node root);
-lst_node distribute_conjunction(lst_node root);
-
+lst_node distribute_disjunction(lst_node root);
+lst_node clean_tree(lst_node root);
 #endif // TRANSFORMATIONS_H_
