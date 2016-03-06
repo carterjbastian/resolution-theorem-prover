@@ -6,3 +6,9 @@ Author: Carter J. Bastian
 Originally written for CS76 final project (chosen topic)
 
 
+Notes, Quirks, and Irregularities:
+- As per section 9.5.5 of AIMA, one must axiomatize equality by hand. This
+  is counter-intuitive, but implementing demodulation or paramodulation is 
+  beyond the scope of this project.
+  To do so, add the three basic axioms at the beginning of math.fol and then
+  one corresponding axiom for each relation or function in the knowledge base.

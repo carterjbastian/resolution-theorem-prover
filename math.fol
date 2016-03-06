@@ -5,8 +5,16 @@ VS: m;
 VS: a;
 VS: b;
 VS: c;
+VS: w;
+VS: x;
+VS: y;
+VS: z;
 FS: S;
 FS: Add;
+
+@x x = x;
+@x @y y = x => x = y;
+@x @y @z x = y ^ y = z => x = z;
 
 NatNum(0);
 @n NatNum(n) => NatNum(S(n));
@@ -14,5 +22,9 @@ NatNum(0);
 @n @m ~(m = n) => ~(S(m) = S(n));
 @m NatNum(m) => Add(0, m) = m;
 @m @n NatNum(m) ^ NatNum(n) => Add(S(m), n) =  S(Add(m,n));
+
+@x @y x = y => (NatNum(x) <=> NatNum(y));
+@x @y x = y => (S(x) = S(y));
+@w @x @y @z w = y ^ x = z => (Add(w,x) = Add(y,x));
 
 QS: @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a);
