@@ -44,27 +44,29 @@ int main() {
     fprintf(stderr, "Parsing reached fatal error. No AST was constructed\n");
 
 
-//  fprintf(stdout, "SYMBOL LIST:\n");
-//  print_symbol_list(stdout, symbol_list);
+  fprintf(stdout, "SYMBOL LIST (before):\n");
+  print_symbol_list(stdout, symbol_list);
 
 //  fprintf(stdout, "\n\nKNOWLEDGE BASE:\n");
 //  print_lst(stdout, root, 0);
 
-  fprintf(stdout, "\n\nQUERY (before transformation):\n");
-  print_lst(stdout, query, 0);
+  fprintf(stdout, "\n\nroot (before transformation):\n");
+  print_lst(stdout, root, 0);
 
   // Apply CNF transformations
-  adoption_agency(query);
-  remove_equivalence(query);
-  remove_implies(query);
+//  adoption_agency(query);
+//  remove_equivalence(query);
+//  remove_implies(query);
 
-  move_negation_inward(query);
-  //standardize_variables(query);
+//  move_negation_inward(query);
+  standardize_variables(root, &symbol_list);
   //skolemize(query);
-  drop_universal_quantifier(query);
-  distribute_disjunction(query);
-  fprintf(stdout, "\n\nQUERY (after transformation):\n");
-  print_lst(stdout, query, 0);
+//  drop_universal_quantifier(query);
+//  distribute_disjunction(query);
+  fprintf(stdout, "\n\nROOT (after transformation):\n");
+  print_lst(stdout, root, 0);
 
+  fprintf(stdout, "\n\nSYMBOL LIST (after):\n");
+  print_symbol_list(stdout, symbol_list);
   return 0;
 }

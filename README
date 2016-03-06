@@ -12,3 +12,19 @@ Notes, Quirks, and Irregularities:
   beyond the scope of this project.
   To do so, add the three basic axioms at the beginning of math.fol and then
   one corresponding axiom for each relation or function in the knowledge base.
+
+- You will get namespace overlap if you have variables with numbers at the end of
+  them in addition to the same variable without the number.
+  FOR EXAMPLE:
+    if you use variables,
+    VS: x;
+    VS: x1;
+    you may get errors with variants.
+  To solve this, just use 
+    VS: x; 
+  and let the CNF-ication process handle making the x1 variant.
+
+- You can have a maximum of 99 variants on a variable. Any more than this,
+  and the code will exit with an error message. This is an arbitrary design
+  choice intended to keep variable variant names short and thereby reduce
+  memory usage.

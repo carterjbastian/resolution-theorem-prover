@@ -6,6 +6,8 @@
  */
 //System includes
 #include <stdlib.h>
+#include <assert.h>
+#include <string.h>
 
 // Local includes
 #include "lst.h"
@@ -14,7 +16,7 @@
 /* Declarations of private helper functions */
 lst_node copy_tree(lst_node subtree);
 
-char *generate_new_var();
+char *generate_variant(symlist_node *original, symlist_node **symbol_list_p);
 void replace_var(lst_node root, char *old_var, char *new_name);
 char *generate_skolem_func();
 void skolem_replace(lst_node root, char *old_var, char *skolem_function, symlist_node *UQV_list);
@@ -208,20 +210,36 @@ lst_node move_negation_inward(lst_node root) {
   return root;
 }
 
-lst_node standardize_variables(lst_node root) {
+lst_node standardize_variables(lst_node root, symlist_node **list_p) {
   // if root is quantifier
+  if (root->node_type == Q_FORALL_N || root->node_type == Q_EXISTS_N) {
+    char *original_name = root->value_string;
+    assert(original_name);
+    symlist_node *original = lookup_symbol(*list_p, original_name);
+    assert(original);
+    
     // if var name is taken
-      // new_var = generate_new_var()
-      // replace_var(left_child, old_var_name, new_var_name);
+    if (original->used) {
+      // Create a new variable to replace the taken one
+      char *new_var = generate_variant(original, list_p);
+
+      // Quantifiers have only one child each
+      root->value_string = new_var; // Update the quantifier
+      replace_var(root->left_child, original_name, new_var);
+    
+    } else {
+      original->used = 1; // Mark this var as having been used
+    }
+  }
 
   // recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
-    standardize_variables(curr);
+    standardize_variables(curr, list_p);
 
   return root;
 }
 
-lst_node skolemize(lst_node root) {
+lst_node skolemize(lst_node root, symlist_node *list) {
   // if root is existential quantifier
     // loop backwards to create list of universally quantified variables in scope
     // F <- generate_skolem_func()
@@ -229,7 +247,7 @@ lst_node skolemize(lst_node root) {
 
   // recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
-    skolemize(curr);
+    skolemize(curr, list);
 
   return root;
 }
@@ -324,6 +342,52 @@ lst_node clean_tree(lst_node root) {
 }
 
 /* Helper functions implementations */
+
+/*
+ * generate_variant - creates a new variable as a variant of an original
+ *
+ * returns the new variable's name
+ */
+char *generate_variant(symlist_node *original, symlist_node **symbol_list_p) {
+  // Get the original name
+  char *original_name = original->name;
+  assert(original_name);
+  int original_len = strlen(original_name);
+
+  // We want null termination => calloc
+  // Allocate space for original name + up to 2 digits + null terminator
+  char *variant_name = (char *) calloc(1, original_len + 2 + 1);
+
+  int variant_number = ++(original->current_variant); // Increment before using
+  assert(variant_number <= MAX_VARIANTS); // Edgecase guarding
+  assert(variant_number > 0);             // No namespace overlap
+
+  // Create the new variant's name
+  sprintf(variant_name, "%s%d", original_name, variant_number);
+
+  // Add the new variant to the symbol table
+  *symbol_list_p = append_symlist(*symbol_list_p, variant_name);
+  assert(*symbol_list_p);
+  (*symbol_list_p)->used = 1;
+  (*symbol_list_p)->current_variant = -1;
+  (*symbol_list_p)->dec_type = VARIABLE_N;
+  return variant_name;
+}
+
+/*
+ * replace_var - recursively replaces one variable with another in a subtree
+ *
+ */
+void replace_var(lst_node root, char *old_var, char *new_name) {
+  // if root is an id and it's name is that of a variable
+  if (root->node_type == VARIABLE_N)
+    if (strcmp(root->value_string, old_var) == 0) 
+      root->value_string = new_name;
+
+  // Recurse on each child
+  for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
+    replace_var(curr, old_var, new_name);
+}
 
 /*
  * copy_tree  - returns an identical copy of an lst subtree starting at the root

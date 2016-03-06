@@ -74,6 +74,15 @@ lst_node_type lookup_symbol_type(symlist_node *list, char *name) {
   return NULL_N;
 }
 
+
+symlist_node *lookup_symbol(symlist_node *list, char *name) {
+  for (symlist_node *curr = list; curr != NULL; curr = curr->next)
+    if (strcmp(curr->name, name) == 0)
+      return curr;
+ 
+  return NULL;
+}
+
 void print_symbol_list(FILE *fp, symlist_node *list) {
   for (symlist_node *curr = list; curr != NULL; curr = curr->next) {
     fprintf(fp, "%s\t", curr->name);

@@ -15,6 +15,8 @@
 
 #include <stdio.h>
 
+#define   MAX_VARIANTS  99
+
 /* 
  * The full enumeration of types of nodes in a Logic Syntax Tree.
  */
@@ -82,6 +84,8 @@ typedef struct symlist_node {
         lst_node_type dec_type;
         struct symlist_node *next;
         struct symlist_node *prev;
+        int used;
+        int current_variant;
 } symlist_node;
 
 symlist_node *create_listnode(char *name);
@@ -89,6 +93,8 @@ symlist_node *create_listnode(char *name);
 symlist_node *append_symlist(symlist_node *list, char *name);
 
 lst_node_type lookup_symbol_type(symlist_node *list, char *name);
+
+symlist_node *lookup_symbol(symlist_node *list, char *name);
 
 void print_symbol_list(FILE *fp, symlist_node *list);
 #endif // LST_H_
