@@ -16,7 +16,7 @@ lst_node remove_equivalence(lst_node root);
 lst_node remove_implies(lst_node root);
 lst_node move_negation_inward(lst_node root);
 lst_node standardize_variables(lst_node root, symlist_node **list);
-lst_node skolemize(lst_node root, symlist_node *list);
+lst_node skolemize(lst_node root, symlist_node **list);
 lst_node drop_universal_quantifier(lst_node root);
 lst_node distribute_disjunction(lst_node root);
 lst_node clean_tree(lst_node root);

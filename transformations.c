@@ -18,7 +18,7 @@ lst_node copy_tree(lst_node subtree);
 
 char *generate_variant(symlist_node *original, symlist_node **symbol_list_p);
 void replace_var(lst_node root, char *old_var, char *new_name);
-char *generate_skolem_func();
+char *generate_skolem_function(symlist_node **symbol_list_p);
 void skolem_replace(lst_node root, char *old_var, char *skolem_function, symlist_node *UQV_list);
 
 // A series of functions to be applied in order
@@ -239,15 +239,29 @@ lst_node standardize_variables(lst_node root, symlist_node **list_p) {
   return root;
 }
 
-lst_node skolemize(lst_node root, symlist_node *list) {
+lst_node skolemize(lst_node root, symlist_node **list_p) {
   // if root is existential quantifier
-    // loop backwards to create list of universally quantified variables in scope
-    // F <- generate_skolem_func()
-    // skolem_replace(child, root->value_string, F, UQVlist)
+  if (root->node_type == Q_EXISTS_N) {
+    symlist_node *UQVlist = NULL;
 
+    // loop backwards to create list of universally quantified variables in scope
+    for (lst_node curr = root->parent; curr != NULL; curr = curr->parent)
+      if (curr->node_type == Q_FORALL_N)
+        UQVlist = append_symlist(UQVlist, curr->value_string);
+
+    // Make a skolem function
+    char *skolem_name = generate_skolem_function(list_p);
+
+    // Replace every instance of the quantified variable with the skolem function
+    skolem_replace(root->left_child, root->value_string, skolem_name, UQVlist);
+     
+    // Delete the root
+    root->value_string = NULL;
+    root->node_type = NULL_N;
+  }
   // recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
-    skolemize(curr, list);
+    skolemize(curr, list_p);
 
   return root;
 }
@@ -375,6 +389,32 @@ char *generate_variant(symlist_node *original, symlist_node **symbol_list_p) {
 }
 
 /*
+ * generate_skolem_function - creates a new skolem function
+ *
+ * returns its name
+ */
+char *generate_skolem_function(symlist_node **symbol_list_p) {
+  // Check if this is the first skolem function
+  char *skolem_name = SKOLEM_BASE;
+
+  if (lookup_symbol(*symbol_list_p, skolem_name)) {
+    // We need a skolem variant
+    symlist_node *skolem_node = lookup_symbol(*symbol_list_p, skolem_name);
+    skolem_name = generate_variant(skolem_node, symbol_list_p);
+    skolem_node = lookup_symbol(*symbol_list_p, skolem_name);
+    skolem_node->dec_type = SKOLEM_N;
+    return skolem_name;
+  } else {
+    // We need to make the first skolem function
+    *symbol_list_p = append_symlist(*symbol_list_p, skolem_name);
+    assert(*symbol_list_p);
+  
+    (*symbol_list_p)->used = 1;
+    (*symbol_list_p)->dec_type = SKOLEM_N;
+    return skolem_name;
+  }
+}
+/*
  * replace_var - recursively replaces one variable with another in a subtree
  *
  */
@@ -387,6 +427,47 @@ void replace_var(lst_node root, char *old_var, char *new_name) {
   // Recurse on each child
   for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
     replace_var(curr, old_var, new_name);
+}
+
+/*
+ * skolem_replace - recursively replaces a variabe with its skolem function
+ *
+ */
+void skolem_replace(lst_node root, char *old_var, char *skolem_function, symlist_node *UQV_list) {
+  // if root is a variable id
+  if (root->node_type == VARIABLE_N) {
+    if (strcmp(root->value_string, old_var) == 0) {
+      root->node_type = SKOLEM_N;
+      root->value_string = skolem_function;
+
+      // For each item in the UQV_list, make it a child of the skolem function
+      for (symlist_node *UQV = UQV_list; UQV != NULL; UQV = UQV->next) {
+        // Add the child in the right place
+        if (root->left_child) {
+          // Loop to the last child
+          lst_node child;
+          for (child = root->left_child; child->right_sib != NULL; child = child->right_sib)
+            ;
+          
+          // Give it a new brother
+          child->right_sib = create_lst_node(VARIABLE_N);
+          child->right_sib->value_string = UQV->name;
+          child->right_sib->parent = root;
+
+        } else {
+          // It will be the first child
+          root->left_child = create_lst_node(VARIABLE_N);
+          root->left_child->value_string = UQV->name;
+          root->left_child->parent = root;
+        }
+      }
+
+    }
+  }
+
+  // Recurse on all children
+  for (lst_node curr = root->left_child; curr != NULL; curr = curr->right_sib)
+    skolem_replace(curr, old_var, skolem_function, UQV_list);
 }
 
 /*

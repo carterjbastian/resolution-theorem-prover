@@ -59,6 +59,9 @@ symlist_node *create_listnode(char *name) {
 }
 
 symlist_node *append_symlist(symlist_node *list, char *name) {
+  if (!list)
+    return create_listnode(name);
+  
   symlist_node *new_node = create_listnode(name);
   list->prev = new_node;
   new_node->next = list;
@@ -102,6 +105,10 @@ void print_symbol_list(FILE *fp, symlist_node *list) {
 
       case VARIABLE_N :
         fprintf(fp, "(variable)");
+        break;
+
+      case SKOLEM_N :
+        fprintf(fp, "(skolem function)");
         break;
 
       default :

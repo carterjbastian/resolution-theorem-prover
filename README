@@ -28,3 +28,8 @@ Notes, Quirks, and Irregularities:
   and the code will exit with an error message. This is an arbitrary design
   choice intended to keep variable variant names short and thereby reduce
   memory usage.
+
+- To avoid overlap, skolem functions are named as
+  $Fxx
+    where xx is a number 1-99
+    As a result, you can have up to 99 skolem functions and no more

@@ -16,6 +16,7 @@
 #include <stdio.h>
 
 #define   MAX_VARIANTS  99
+#define   SKOLEM_BASE   "$F"
 
 /* 
  * The full enumeration of types of nodes in a Logic Syntax Tree.
@@ -23,7 +24,7 @@
 typedef enum { 
               NULL_N, KB_ROOT_N, RELATION_N, FUNCTION_N, CONSTANT_N, VARIABLE_N,
               NEGATION_N, CONJUNCTION_N, DISJUNCTION_N, EQUALS_N,
-              IMPLICATION_N, EQUIVALENCE_N, Q_EXISTS_N, Q_FORALL_N
+              IMPLICATION_N, EQUIVALENCE_N, Q_EXISTS_N, Q_FORALL_N, SKOLEM_N
 } lst_node_type;
 
 /* A struct used for lst_node_type -> string value conversion table */
@@ -52,7 +53,8 @@ static val_name_pair token_table[] = {
     { IMPLICATION_N, "=>" },
     { EQUIVALENCE_N, "<=>" },
     { Q_EXISTS_N, "#" },
-    { Q_FORALL_N, "@" }
+    { Q_FORALL_N, "@" },
+    { SKOLEM_N, "SKOLEM_FUNCTION" }
 };
 
 #define NODE_INDEX(X)    ( (X) - NULL_N)
