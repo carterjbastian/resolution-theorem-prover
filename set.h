@@ -7,6 +7,8 @@
 #ifndef SET_H_
 #define SET_H_
 
+#include "lst.h"
+
 /* Declarations for the clause substitution (cSub) datatype */
 typedef struct cSub {
   lst_node var;
@@ -15,6 +17,8 @@ typedef struct cSub {
 //  struct cSub *prev;
   int fail;
 } cSub;
+
+cSub *empty_sub();
 
 cSub *generate_sub(lst_node var, lst_node replacement);
 

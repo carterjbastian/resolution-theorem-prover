@@ -13,6 +13,12 @@
 #include "set.h"
 
 /* Implementations for the substitution datatype */
+cSub *empty_sub() {
+  cSub *ret = (cSub *) calloc(1, sizeof(cSub));
+  assert(ret);
+  return ret;
+}
+
 cSub *generate_sub(lst_node var, lst_node replacement) {
   cSub *ret = (cSub *) calloc(1, sizeof(cSub));
   assert(ret);
@@ -29,10 +35,11 @@ cSub *add_sub(cSub *old, cSub *sub) {
   return sub;
 }
 
-cSub *findSubstitution(cSub *sub, lst_node var) {
+cSub *find_sub(cSub *sub, lst_node var) {
   for (cSub *curr = sub; curr != NULL; curr = curr->next)
-    if (tree_equals(var, curr->var) == 0)
-      return curr;
+    if (curr->var)
+      if (tree_equals(var, curr->var) == 0)
+        return curr;
 
   // We didn't find it
   return NULL;

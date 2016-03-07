@@ -24,6 +24,13 @@ lst_node create_lst_node(lst_node_type type) {
   return new_node;
 }
 
+lst_node shallow_copy(lst_node node) {
+  lst_node copy = create_lst_node(node->node_type);
+  if (node->value_string)
+    copy->value_string = strdup(node->value_string);
+
+  return copy;
+}
  
 void print_lst(FILE *fp, lst_node root, int depth) {
   /* Print two spaces for every level of depth. */

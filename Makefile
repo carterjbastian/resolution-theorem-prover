@@ -7,8 +7,17 @@ FLEXFLAGS = -ll
 
 .SUFFIXES: .c
 
-parse : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o set.o
-	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o set.o $(FLEXFLAGS)
+parse : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o resolution.o set.o
+	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o set.o resolution.o parseKB_main.o  $(FLEXFLAGS)
+
+unifyTest : lex.yy.o parseKB.tab.o lst.o transformations.o unify_main.o resolution.o set.o
+	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o set.o resolution.o unify_main.o  $(FLEXFLAGS)
+
+unify_main.o : unify_main.c
+	$(CC) -c $(CFLAGS) unify_main.c
+
+resolution.o : resolution.c
+	$(CC) -c $(CFLAGS) resolution.c
 
 set.o : set.c
 	$(CC) -c $(CFLAGS) set.c
@@ -36,7 +45,7 @@ parseKB_main.o : parseKB_main.c
 	$(CC) -c $(CFLAGS) $<
 
 clean :
-	rm -f parse *.o parseKB.tab.* lex.yy.c *.output
+	rm -f parse *.o parseKB.tab.* lex.yy.c *.output unifyTest
 
 depend :
 	makedepend -- $(CFLAGS) -- parseKB_main.c
