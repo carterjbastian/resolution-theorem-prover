@@ -94,9 +94,13 @@ symlist_node *create_listnode(char *name);
 
 symlist_node *append_symlist(symlist_node *list, char *name);
 
+int tree_equals(lst_node t1, lst_node t2);
+
 lst_node_type lookup_symbol_type(symlist_node *list, char *name);
 
 symlist_node *lookup_symbol(symlist_node *list, char *name);
 
 void print_symbol_list(FILE *fp, symlist_node *list);
+
+
 #endif // LST_H_
