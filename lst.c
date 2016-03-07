@@ -68,6 +68,49 @@ symlist_node *append_symlist(symlist_node *list, char *name) {
   return new_node;
 }
 
+int tree_equals(lst_node t1, lst_node t2) {
+  // Check that the current node's values are the same for both trees
+  // Must check both node type and value string
+  if (t1->node_type != t2->node_type)
+    return 1;
+  
+  if (t1->value_string) { // t1 has a value string
+    if (!t2->value_string) {
+      return 1;
+    } else {
+      if (strcmp(t1->value_string, t2->value_string) != 0)
+        return 1;
+    }
+  } else { // t1 doesn't have a value string
+    if (t2->value_string)
+      return 1;
+  }
+
+  lst_node t1_child, t2_child;
+  // Recurse on each set of sub-trees for the two trees
+  for (t1_child = t1->left_child, t2_child = t2->left_child;
+        t1_child != NULL; 
+        t1_child = t1_child->right_sib) {
+    
+    // Null guarding
+    if (t2_child == NULL) // t1_child is not, so fail
+      return 1;
+
+    // recurse
+    if (tree_equals(t1_child, t2_child) != 0)
+      return 1;
+
+    // change t2_child
+    t2_child = t2_child->right_sib;
+  }
+
+  // IF t1_child is null and t2_child isn't, the trees are different
+  if (t2_child)
+    return 1;
+
+  // No equality test failed
+  return 0;
+}
 
 lst_node_type lookup_symbol_type(symlist_node *list, char *name) {
   for (symlist_node *curr = list; curr != NULL; curr = curr->next)

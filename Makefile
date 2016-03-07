@@ -7,8 +7,11 @@ FLEXFLAGS = -ll
 
 .SUFFIXES: .c
 
-parse : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o
-	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o $(FLEXFLAGS)
+parse : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o set.o
+	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o set.o $(FLEXFLAGS)
+
+set.o : set.c
+	$(CC) -c $(CFLAGS) set.c
 
 lst.o : lst.c
 	$(CC) -c $(CFLAGS) lst.c
