@@ -351,8 +351,38 @@ lst_node distribute_disjunction(lst_node root) {
   return root;
 }
 
-lst_node clean_tree(lst_node root) {
-  return root;
+lst_node clean_tree(lst_node *root) {
+  // If the node is a NULL_N
+  if ((*root)->node_type == NULL_N) {  
+    fprintf(stdout, "Found a null node\n");
+    // Remove it from the tree
+    
+    // Find where it is in relation to its siblings
+    lst_node lSib = NULL;
+    if ((*root)->parent->left_child == (*root)) {
+      fprintf(stdout, "It's the leftmost child\n");
+      (*root)->parent->left_child = (*root)->left_child;
+      (*root)->left_child->right_sib = (*root)->right_sib;
+      (*root)->left_child->parent = (*root)->parent;
+      *root = (*root)->parent;
+
+    } else {
+      fprintf(stdout, "It's not the leftmost child\n");
+      for (lSib = (*root)->parent->left_child; lSib->right_sib != NULL && lSib->right_sib != *root; lSib = lSib->right_sib)
+        ;
+
+      lSib->right_sib = (*root)->left_child;
+      (*root)->left_child->right_sib = (*root)->right_sib;
+      (*root)->left_child->parent = (*root)->parent;
+      *root = (*root)->parent;      
+    }
+  }
+    
+  // Recurse on children
+  for (lst_node curr = (*root)->left_child; curr != NULL; curr = curr->right_sib)
+    curr = clean_tree(&curr);
+
+  return *root;
 }
 
 /* Helper functions implementations */

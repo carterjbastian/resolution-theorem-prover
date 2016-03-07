@@ -43,30 +43,44 @@ int main() {
   // else
     fprintf(stderr, "Parsing reached fatal error. No AST was constructed\n");
 
+  /* Add negated query to the knowledge base */
+  lst_node curr;
+  for (curr = root->left_child; curr->right_sib != NULL; curr = curr->right_sib)
+    ;
+  lst_node negation = create_lst_node(NEGATION_N);
+  negation->parent = root;
+  negation->left_child = query;
+  query->parent = negation;
+  curr->right_sib = negation;
 
   fprintf(stdout, "SYMBOL LIST (before):\n");
   print_symbol_list(stdout, symbol_list);
 
-//  fprintf(stdout, "\n\nKNOWLEDGE BASE:\n");
-//  print_lst(stdout, root, 0);
-
-  fprintf(stdout, "\n\nQUERY (before transformation):\n");
-  print_lst(stdout, query, 0);
+  fprintf(stdout, "\n\nKNOWLEDGE BASE: (before transformation\n");
+  print_lst(stdout, root, 0);
 
   // Apply CNF transformations
-  adoption_agency(query);
-  remove_equivalence(query);
-  remove_implies(query);
-  move_negation_inward(query);
+  adoption_agency(root);
+  remove_equivalence(root);
+  remove_implies(root);
+  move_negation_inward(root);
 
-  standardize_variables(query, &symbol_list);
-  skolemize(query, &symbol_list);
+  standardize_variables(root, &symbol_list);
+  skolemize(root, &symbol_list);
 
-  drop_universal_quantifier(query);
-  distribute_disjunction(query);
+  drop_universal_quantifier(root);
+  distribute_disjunction(root);
 
-  fprintf(stdout, "\n\nQUERY (after transformation):\n");
-  print_lst(stdout, query, 0);
+  // Clean up the NULL nodes
+  adoption_agency(root);
+
+  for (curr = root->left_child; curr != NULL; curr = curr->right_sib) {
+    fprintf(stdout, "Looking at branch\n");
+    curr = clean_tree(&curr);
+  }
+
+  fprintf(stdout, "\n\nKNOWLEDGE BASE (after transformation):\n");
+  print_lst(stdout, root, 0);
 
   fprintf(stdout, "\n\nSYMBOL LIST (after):\n");
   print_symbol_list(stdout, symbol_list);

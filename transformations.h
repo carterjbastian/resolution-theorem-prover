@@ -19,5 +19,5 @@ lst_node standardize_variables(lst_node root, symlist_node **list);
 lst_node skolemize(lst_node root, symlist_node **list);
 lst_node drop_universal_quantifier(lst_node root);
 lst_node distribute_disjunction(lst_node root);
-lst_node clean_tree(lst_node root);
+lst_node clean_tree(lst_node *root);
 #endif // TRANSFORMATIONS_H_
