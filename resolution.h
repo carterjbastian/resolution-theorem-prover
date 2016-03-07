@@ -19,4 +19,5 @@ cSet *factor(lst_node clause);
 
 cSub *unify(lst_node c1, lst_node c2, cSub *sub);
 
+cSub *findSubstitution(cSub *sub, lst_node var);
 #endif // RESOLUTION_H_

@@ -10,12 +10,14 @@
 typedef struct cSub {
   lst_node var;
   lst_node replacement;
+  struct cSub *next;
+  struct cSub *prev;
   int fail;
 } cSub;
 
 cSub *generate_sub(lst_node var, lst_node replacement);
 
-
+cSub *findSubstitution(cSub *sub, lst_node var);
 
 
 typedef struct cSet {
