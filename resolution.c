@@ -8,7 +8,7 @@
 // System includes
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <assert.h>
 // Local includes
 #include "set.h"
 #include "lst.h"
@@ -36,7 +36,7 @@ int resolution(FILE *fp, lst_node kb) {
     fprintf(stdout, "failed to make clauses\n");
 
   // Separate the clauses from each other
-  fprintf(stdout, "CLAUSES:\n");
+  fprintf(stdout, "\n\nProof:\nINITIAL CLAUSES:\n");
   for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
     if (clause->val) {
       print_lst(stdout, clause->val, 0);
@@ -46,22 +46,33 @@ int resolution(FILE *fp, lst_node kb) {
       clause = NULL; // remove the trailing empty clause
     }
   }
+  fprintf(stdout, "Every clause after this is derived by resolution of previous listed clauses\n");
   
   // Factor the original set of clauses
   // Loop forever
 //  while (++i > 0) {
-  while(++i < 4) {
-    fprintf(fp, "Inside while loop iteration %d\n", i);
+  while(++i < 2) {
+    //fprintf(fp, "Inside while loop iteration %d\n", i);
     
     // Loop through each clause in the clauses set
     for (cSet *c1 = clauses; c1 != NULL; c1 = c1->next) {
       // Loop through each subsequent clause in the clauses set
       for (cSet *c2 = c1->next; c2 != NULL; c2 = c2->next) {
+          c1->val->right_sib = NULL;
+          c2->val->right_sib = NULL;
         // create new resolvents set by resolving the pair
-        cSet *resolvents = resolve(c1->val, c2->val);
+        fprintf(fp, "==========================================\n");
+        fprintf(fp, "\nResolvent 1:\n");
+        print_lst(fp, c1->val, 0);
 
+        fprintf(fp, "Resolvent 2:\n");
+        print_lst(fp, c2->val, 0);
+
+        fprintf(fp, "\t---Entering Resolve---\n");
+        cSet *resolvents = resolve(c1->val, c2->val);
+        fprintf(fp, "\t---Exiting Resolve---\n");
         // PRINT THE RESOLVENTS!
-        fprintf(stdout, "\n\tRESOLVENTS\n");
+        fprintf(stdout, "Produces:\n");
         for (cSet *resolved = resolvents; resolved != NULL; resolved = resolved->next) {
           if (resolved->val) {
             print_lst(fp, resolved->val, 0);
@@ -70,6 +81,11 @@ int resolution(FILE *fp, lst_node kb) {
           
         }
 
+        fprintf(fp, "\nReprinting Resolvent 1:\n");
+        print_lst(fp, c1->val, 0);
+
+        fprintf(fp, "Reprinting Resolvent 2:\n");
+        print_lst(fp, c2->val, 0);
         // if resolvents contains the empty clause, return true
 //        if (inSet(resolvents, empty_clause)) // DONE WITH PROOF
         /* WARNING: MAKE SURE YOU PRINT THE END OF THE PROOF */
@@ -82,6 +98,7 @@ int resolution(FILE *fp, lst_node kb) {
         }
       }
     }
+    /*
     fprintf(stdout, "\n\n\tNEW CLAUSES\n");
     for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
       if (clause->val) {
@@ -89,19 +106,21 @@ int resolution(FILE *fp, lst_node kb) {
         fprintf(stdout, "\n");
         clause->val->right_sib = NULL;
       }
-    }
+    }*/
 
     // if the new set is a subset of clauses, return false
+
     int subset = 1;
     for (cSet *cNew = new; cNew != NULL; cNew = cNew->next)
       if (! inSet(clauses, cNew->val))
         subset = 0;
 
-    if (subset)
+    if (subset){
+      fprintf(fp, "Resolution fails, as the new set after an iteration is a subset of the clauses already known.\n");
       return 1;
-    else  // otherwise, join clauses with the new set and reiterate
+    } else {  // otherwise, join clauses with the new set and reiterate
       clauses = joinSet(clauses, new);
-
+    }
 
 
   }
@@ -111,58 +130,87 @@ int resolution(FILE *fp, lst_node kb) {
 }
 
 cSet *resolve(lst_node c1, lst_node c2) {
-  fprintf(stdout, "Inside resolve\n");
+//  fprintf(stdout, "Inside resolve\n");
   cSet *resolvents = generate_set();
   
   // Make the set of all disjunctions in clause 1
   cSet *disjuncts1 = get_disjunctions(c1, generate_set());
-
-  fprintf(stdout, "Got first disjunction set\n");
-  // Make the set of all disjunctions in clause 2
+ 
   cSet *disjuncts2 = get_disjunctions(c2, generate_set());
-  fprintf(stdout, "Got second disjunction set\n");  
+ 
+  fprintf(stdout, "Printing disjunctions set #1\n");
+  for (cSet *d1 = disjuncts1; d1 != NULL; d1 = d1->next)
+    print_lst(stdout, d1->val, 0);
+
+  fprintf(stdout, "Printing disjunctions set #2\n");
+  for (cSet *d2 = disjuncts2; d2 != NULL; d2 = d2->next)
+    print_lst(stdout, d2->val, 0);
+
   // For each disjunction in C1
   for (cSet *d1 = disjuncts1; d1 != NULL; d1 = d1->next) {
     // For each disjunction in C2
     for (cSet *d2 = disjuncts2; d2 != NULL; d2 = d2->next) {
       // negate d2
       lst_node d2neg = create_lst_node(NEGATION_N);
+      d2neg->right_sib = NULL;
       d2neg->left_child = d2->val; // QUESTION: Do I need to move ~ inwards again?
+      assert(d2neg->right_sib == NULL);
+      /* SANITY CHECK */
+      printf("Disjunction1: \n");
+      print_lst(stdout, d1->val, 0);
+
+      printf("Newgated Disjunction2: \n");
+      print_lst(stdout, d2neg, 0);
 
       // If d1 and ~d2 are unifiable
-      fprintf(stdout, "Starting search for unifiable nodes\n");
       if ((unify(d1->val, d2neg, empty_sub()))->fail == 0) {
-        fprintf(stdout, "Found unifiable pair\n");
+        assert(d2neg->right_sib == NULL);
         // create a new set from all the disjuncts in both clauses EXCEPT these two
         // Loop forwards and backwards through disjuncts1 adding all the clauses
         cSet *newSet = generate_set();
-        for (cSet *f = d1->next; f != NULL; f = f->next)
-          newSet = addSet(newSet, f->val);
-        for (cSet *b = d1->prev; b != NULL; b = b->prev)
-          newSet = addSet(newSet, b->val);
+        for (cSet *f = d1->next; f != NULL; f = f->next) {
+          lst_node temp = deep_copy(f->val);
+          temp->right_sib = NULL;
+          newSet = addSet(newSet, temp);
+        }
+        for (cSet *b = d1->prev; b != NULL; b = b->prev){
+          lst_node temp = deep_copy(b->val);
+          temp->right_sib = NULL;
+          newSet = addSet(newSet, temp);
+        }
 
         // Loop forwards and backwards through disjuncts2 adding all the clauses
-        for (cSet *f = d2->next; f != NULL; f = f->next)
-          newSet = addSet(newSet, f->val);
-        for (cSet *b = d2->prev; b != NULL; b = b->prev)
-          newSet = addSet(newSet, b->val);
+        for (cSet *f = d2->next; f != NULL; f = f->next){
+          lst_node temp = deep_copy(f->val);
+          temp->right_sib = NULL;
+          newSet = addSet(newSet, temp);
+        }
+        for (cSet *b = d2->prev; b != NULL; b = b->prev) {
+          lst_node temp = deep_copy(b->val);
+          temp->right_sib = NULL;
+          newSet = addSet(newSet, temp);
+        }
 
+        printf("====The new set of disjunctions not in these clauses:\n");
+        for (cSet *p = newSet; p != NULL; p = p->next)
+          print_lst(stdout, p->val, 0);
+
+        printf("====\n");
         // Check if this new set is empty
         if (!newSet || newSet->val == NULL) {
-          fprintf(stdout, "Unifiable pair has empty clause\n");
           // Give it the empty clause
           newSet->val = create_lst_node(NULL_N);
           return newSet; // Fail early - this means we have proof
         } else {
-          fprintf(stdout, "Factoring new set\n");
+          assert(d2neg->right_sib == NULL); 
           // Factor this new set
           newSet = factor(newSet);
-
+          assert(d2neg->right_sib == NULL);
           // Build the resulting set into a new node
           if (newSet) {
+            assert(d2neg->right_sib == NULL);
             lst_node rejoined = disjoin_clauses(newSet);
-
-            fprintf(stdout, "Rejoined lst_node:\n");
+            assert(d2neg->right_sib == NULL);
             print_lst(stdout, rejoined, 0);
 
             // Add this new node to the resolvents set
@@ -172,13 +220,10 @@ cSet *resolve(lst_node c1, lst_node c2) {
             resolvents = addSet(resolvents, rejoined);
           }
         } 
-      } else {
-        fprintf(stdout, "Found non-unifiable pair\n");
       }
     }
   }
 
-  fprintf(stdout, "RETURNING FROM RESOLVE\n");
   // Return the resolvents set
   return resolvents;
 }
@@ -223,11 +268,11 @@ cSet *factor(cSet *set) {
 cSub *unify(lst_node c1, lst_node c2, cSub *sub) {
 
   if (!c1 || !c2) {
-    fprintf(stdout, "Failing from unify due to nullness\n");
+//    fprintf(stdout, "Failing from unify due to nullness\n");
     sub->fail = 1;
     return sub;
   }
-  fprintf(stdout, "In unify\n");
+//  fprintf(stdout, "In unify\n");
   // If substitution is failure, return failure
   if (sub->fail) {
     return sub;
@@ -239,29 +284,30 @@ cSub *unify(lst_node c1, lst_node c2, cSub *sub) {
   
   // else if x is a variable, recurse on unify var
   } else if (c1->node_type == VARIABLE_N) {
-    fprintf(stdout, "var 1 is variable, => unify var\n");
+//    fprintf(stdout, "var 1 is variable, => unify var\n");
     return unify_var(c1, c2, sub);
 
   // else if y is a variable, recurse on unify var
   } else if (c2->node_type == VARIABLE_N) {
-    fprintf(stdout, "var 2 is variable, => unify var\n");
+//    fprintf(stdout, "var 2 is variable, => unify var\n");
     return unify_var(c2, c1, sub);
 
   // else if both are compounds, recurse on their arguments
   } else if (c1->node_type != VARIABLE_N && c1->node_type != CONSTANT_N &&
              c2->node_type != VARIABLE_N && c2->node_type != CONSTANT_N &&
              c1->right_sib == NULL && c2->right_sib == NULL &&
-             c1->left_child != NULL && c2->left_child != NULL) {
+            c1->left_child != NULL && c2->left_child != NULL) {
+  
     
-    fprintf(stdout, "two compounds\n");
+    //fprintf(stdout, "two compounds\n");
     lst_node op1 = shallow_copy(c1);
     lst_node op2 = shallow_copy(c2);
-
+/*
     fprintf(stdout, "C1:\n");
     print_lst(stdout, c1, 0);
     fprintf(stdout, "C2:\n");
     print_lst(stdout, c2, 0);
-
+  */
 
 
     // The list of arguments for a complex statment is its left child
@@ -273,7 +319,7 @@ cSub *unify(lst_node c1, lst_node c2, cSub *sub) {
              c1->right_sib != NULL && c2->right_sib != NULL) {
 
     // Make shallow copies of the arguments we're popping off
-    fprintf(stdout, "Two lists\n");
+    //fprintf(stdout, "Two lists\n");
     lst_node arg1 = shallow_copy(c1);
     lst_node arg2 = shallow_copy(c2);
 
@@ -281,12 +327,13 @@ cSub *unify(lst_node c1, lst_node c2, cSub *sub) {
 
   // else return failure
   } else {
+    /*
     fprintf(stdout, "Failing by default\n");
     fprintf(stdout, "var 1 = %s, var 2 = %s\n", NODE_NAME(c1->node_type), NODE_NAME(c2->node_type));
     fprintf(stdout, "Var 1: \n");
     print_lst(stdout, c1, 0);
     fprintf(stdout, "Var 2: \n");
-    print_lst(stdout, c2, 0);
+    print_lst(stdout, c2, 0); */
     sub->fail = 1;
     return sub;
   }
@@ -335,7 +382,7 @@ int occur_check(lst_node var, lst_node x) {
 cSet *generate_clauses(lst_node node, cSet *clauses) {
   // If this isn't conjunction, add this node
   if (node->node_type != CONJUNCTION_N) {
-    clauses = addSet(clauses, node);
+    clauses = addSet(clauses, deep_copy(node));
   } else { // otherwise, recurse on it's children
     for (lst_node curr = node->left_child; curr != NULL; curr = curr->right_sib)
       clauses = generate_clauses(curr, clauses);
@@ -347,42 +394,75 @@ cSet *generate_clauses(lst_node node, cSet *clauses) {
 cSet *get_disjunctions(lst_node node, cSet *disjuncts) {
   // If this isn't disjunction, add this node
   if (node) {
-  if (node->node_type != DISJUNCTION_N) {
-    disjuncts = addSet(disjuncts, node);
-  } else { // otherwise, recurse on children
-    for (lst_node curr = node->left_child; curr != NULL; curr = curr->right_sib)
-      disjuncts = get_disjunctions(curr, disjuncts);
-  }
+    if (node->node_type != DISJUNCTION_N) {
+      lst_node toAdd = deep_copy(node); // Make a copy
+      toAdd->right_sib = NULL;
+      disjuncts = addSet(disjuncts, toAdd);
+    } else { // otherwise, recurse on children
+      for (lst_node curr = node->left_child; curr != NULL; curr = curr->right_sib)
+        disjuncts = get_disjunctions(curr, disjuncts);
+    }
   }
 
   return disjuncts;
 }
 
 lst_node disjoin_clauses(cSet *clauses) {
-  lst_node root = create_lst_node(DISJUNCTION_N);
-
-  lst_node node = root;
+  lst_node root = NULL;
+  lst_node node = NULL;
+  
   while (clauses != NULL) {
-    cSet *clause = clauses;
+    cSet *curr = clauses;
     clauses = clauses->next;
 
-    // Last item
-    if (clauses == NULL) {
-      // Replace root with myself
-      lst_node addIn = deep_copy(clause->val);
-      addIn->parent = node->parent;
-      if (node->parent)
-        node->parent->left_child->right_sib = addIn;
- 
-      node = addIn;
-    } else {
-      node->left_child = deep_copy(clause->val);
-      node->left_child->parent = node;
-      node->left_child->right_sib = create_lst_node(DISJUNCTION_N);
-      node->left_child->right_sib->parent = node;
-      node = node->left_child->right_sib;
+    // Singleton set
+    if (root == NULL && clauses == NULL) {
+      lst_node copy = deep_copy(curr->val);
+      copy->parent = NULL;
+      copy->right_sib = NULL;
+      root = copy;
+
+    // In the tree and we have more nodes to go
+    } else if (root != NULL && clauses != NULL) {
+      lst_node copy = deep_copy(curr->val);
+      lst_node dis = create_lst_node(DISJUNCTION_N);
+
+      copy->parent = node;
+      copy->right_sib = dis;
+      dis->parent = node;
+
+      node->left_child = copy;
+      node = node->left_child->right_sib; // dis becomes the new node
+    
+    // In the tree and we're done
+    } else if (root != NULL && clauses == NULL) {
+      // Replace the current node with this clause
+      lst_node copy = deep_copy(curr->val);
+      copy->parent = node->parent;
+      copy->right_sib = NULL;
+
+      node->parent->left_child->right_sib = copy;
+      node = copy;
+    
+    // We need to start the tree (of multiple clauses)
+    } else { 
+      lst_node newRoot = create_lst_node(DISJUNCTION_N);
+      root = newRoot;
+      node = root;
+
+      lst_node copy = deep_copy(curr->val);
+      lst_node dis = create_lst_node(DISJUNCTION_N);
+
+      copy->parent = node;
+      copy->right_sib = dis;
+      dis->parent = node;
+
+      node->left_child = copy;
+      node = node->left_child->right_sib; // dis becomes the new node
+
     }
-  }
+ 
+  } 
 
   return root;
 }

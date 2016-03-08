@@ -34,6 +34,8 @@ typedef struct cSet {
   struct cSet *prev;
 } cSet;
 
+void *print_set();
+
 cSet *generate_set();
 
 cSet *addSet(cSet *set, lst_node val);

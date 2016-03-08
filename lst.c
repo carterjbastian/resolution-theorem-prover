@@ -37,6 +37,16 @@ lst_node deep_copy(lst_node node) {
 
   memcpy(copy, node, sizeof(struct lst_node_struct));
 
+  // Recurse on each child
+  // We only use this when building dijunction trees => max of two siblings
+  if (copy->left_child) {
+    copy->left_child = deep_copy(copy->left_child);
+
+    if (copy->left_child->right_sib)
+      copy->left_child->right_sib = deep_copy(copy->left_child->right_sib);
+
+  }
+
   return copy;
 } 
 void print_lst(FILE *fp, lst_node root, int depth) {

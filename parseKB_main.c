@@ -89,7 +89,7 @@ int main() {
 
   int result = resolution(stdout, root);  
   if (result == 0)
-    fprintf(stdout, "YOU DID IT YOU CRAZY MOTHERFUCKER, YOU PROVED IT!!\n");
+    fprintf(stdout, "Having derived the empty clause with resolution, by the Ground Resolution Theorem, the query is proven.\n");
   else 
     fprintf(stdout, "not this time...\n");
   return 0;

@@ -1,0 +1,10 @@
+CS: A;
+CS: B;
+CS: C;
+
+~C v B;
+~B v A v C;
+~A v B;
+~B;
+
+QS: ~A;
