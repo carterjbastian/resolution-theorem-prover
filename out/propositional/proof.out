@@ -1,0 +1,306 @@
+Proof of query:
+All of the following clauses are derived from the knowledge base by resolution.
+
+
+PREVIOUS CLAUSES (before iteration 2)
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+
+| ~ 
+| - CONSTANT C
+
+| ~ 
+| - CONSTANT A
+
+| CONSTANT B
+
+| CONSTANT A
+
+| ~ 
+| - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+
+
+
+FINAL CLAUSES (from iteration 2)
+| NULL 
+
+| v 
+| - ~ 
+| - - CONSTANT B
+| - CONSTANT A
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+
+| v 
+| - CONSTANT C
+| - ~ 
+| - - CONSTANT B
+
+| v 
+| - CONSTANT B
+| - CONSTANT C
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT C
+
+| v 
+| - CONSTANT C
+| - CONSTANT A
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT A
+
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT C
+
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT C
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT C
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT B
+
+| v 
+| - CONSTANT A
+| - CONSTANT B
+
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT B
+
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT C
+| - - v 
+| - - - CONSTANT A
+| - - - ~ 
+| - - - - CONSTANT B
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - v 
+| - - - CONSTANT B
+| - - - ~ 
+| - - - - CONSTANT B
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+
+| ~ 
+| - CONSTANT C
+
+| ~ 
+| - CONSTANT A
+
+| CONSTANT B
+
+| CONSTANT A
+
+| ~ 
+| - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+
+Having derived the empty clause with resolution, by the Ground Resolution Theorem, the query is proven.

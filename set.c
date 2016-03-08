@@ -83,7 +83,17 @@ cSet *joinSet(cSet *s1, cSet *s2) {
   // Null guard
   if (s2 == NULL)
     return s1;
+/*
+  for (cSet *curr = s1; curr != NULL; curr = curr->next) {
+    if (!s1->val)
+      continue;
 
+    if (inSet(curr, s1->val) == 0) {
+      s2 = addSet(s2, s1->val);
+    }
+  }
+  */
+  
   // Loop to the last item in the second set
   cSet *last;
   for (last = s2; last->next != NULL; last = last->next)
@@ -92,8 +102,6 @@ cSet *joinSet(cSet *s1, cSet *s2) {
   // Connect last item in second set to first item in first set
   last->next = s1;
   s2->prev = last;
- 
-  // s2 is now the beginning of the newly conjoined set
-  // NOTE: there may be duplicate items (and this is ok because we factor) 
+  
   return s2;
 }

@@ -13,6 +13,7 @@
 #include "set.h"
 #include "lst.h"
 #include "resolution.h"
+#include "transformations.h"
 
 // Helper function declarations
 cSub *unify_var(lst_node c1, lst_node c2, cSub *sub);
@@ -51,62 +52,87 @@ int resolution(FILE *fp, lst_node kb) {
   // Factor the original set of clauses
   // Loop forever
 //  while (++i > 0) {
-  while(++i < 2) {
+  while(++i < 3) {
     //fprintf(fp, "Inside while loop iteration %d\n", i);
     
     // Loop through each clause in the clauses set
     for (cSet *c1 = clauses; c1 != NULL; c1 = c1->next) {
+    if (c1->val == NULL)
+      continue;
       // Loop through each subsequent clause in the clauses set
       for (cSet *c2 = c1->next; c2 != NULL; c2 = c2->next) {
-          c1->val->right_sib = NULL;
-          c2->val->right_sib = NULL;
+        if (c2->val == NULL)
+          continue;
+
+        c1->val->right_sib = NULL;
+        c2->val->right_sib = NULL;
         // create new resolvents set by resolving the pair
-        fprintf(fp, "==========================================\n");
-        fprintf(fp, "\nResolvent 1:\n");
-        print_lst(fp, c1->val, 0);
+        fprintf(stdout, "==========================================\n");
+        fprintf(stdout, "\nResolvent 1:\n");
+        print_lst(stdout, c1->val, 0);
 
-        fprintf(fp, "Resolvent 2:\n");
-        print_lst(fp, c2->val, 0);
+        fprintf(stdout, "Resolvent 2:\n");
+        print_lst(stdout, c2->val, 0);
 
-        fprintf(fp, "\t---Entering Resolve---\n");
+        fprintf(stdout, "\t---Entering Resolve---\n");
         cSet *resolvents = resolve(c1->val, c2->val);
-        fprintf(fp, "\t---Exiting Resolve---\n");
+        fprintf(stdout, "\t---Exiting Resolve---\n");
         // PRINT THE RESOLVENTS!
         fprintf(stdout, "Produces:\n");
         for (cSet *resolved = resolvents; resolved != NULL; resolved = resolved->next) {
           if (resolved->val) {
-            print_lst(fp, resolved->val, 0);
-            fprintf(fp, "\n");
+            print_lst(stdout, resolved->val, 0);
+            fprintf(stdout, "\n");
           }
           
         }
 
-        fprintf(fp, "\nReprinting Resolvent 1:\n");
-        print_lst(fp, c1->val, 0);
+        fprintf(stdout, "\nReprinting Resolvent 1:\n");
+        print_lst(stdout, c1->val, 0);
 
-        fprintf(fp, "Reprinting Resolvent 2:\n");
-        print_lst(fp, c2->val, 0);
+        fprintf(stdout, "Reprinting Resolvent 2:\n");
+        print_lst(stdout, c2->val, 0);
         // if resolvents contains the empty clause, return true
 //        if (inSet(resolvents, empty_clause)) // DONE WITH PROOF
         /* WARNING: MAKE SURE YOU PRINT THE END OF THE PROOF */
         if (resolvents->val) {
-          if (resolvents->val->node_type == NULL_N)
+          for (cSet *resolved = resolvents; resolved != NULL; resolved = resolved->next)
+            if (inSet(new, resolved->val) == 0)
+              new = addSet(new, resolved->val);
+
+          //new = joinSet(new, resolvents);
+          if (resolvents->val->node_type == NULL_N) {
+            // Print the proof!
+
+            fprintf(fp, "Proof of query:\n");
+            fprintf(fp, "All of the following clauses are derived from the knowledge base by resolution.\n");
+
+
+            fprintf(fp, "\n\nPREVIOUS CLAUSES (before iteration %d)\n", i);
+            for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
+              if (clause->val) {
+                print_lst(fp, clause->val, 0);
+                fprintf(fp, "\n");
+                clause->val->right_sib = NULL;
+              }
+            }
+
+            fprintf(fp, "\n\nFINAL CLAUSES (from iteration %d)\n", i);
+            for (cSet *clause = new; clause != NULL; clause = clause->next) {
+              if (clause->val) {
+                print_lst(fp, clause->val, 0);
+                fprintf(fp, "\n");
+                clause->val->right_sib = NULL;
+              }
+            }
+
             return 0;
-        
-          // join new and resolvents sets
-          new = joinSet(new, resolvents);
+
+          }
+
         }
       }
     }
-    /*
-    fprintf(stdout, "\n\n\tNEW CLAUSES\n");
-    for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
-      if (clause->val) {
-        print_lst(stdout, clause->val, 0);
-        fprintf(stdout, "\n");
-        clause->val->right_sib = NULL;
-      }
-    }*/
 
     // if the new set is a subset of clauses, return false
 
@@ -122,6 +148,14 @@ int resolution(FILE *fp, lst_node kb) {
       clauses = joinSet(clauses, new);
     }
 
+    fprintf(stdout, "\n\nNEW CLAUSES (iteration %d)\n", i);
+    for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
+      if (clause->val) {
+        print_lst(stdout, clause->val, 0);
+        fprintf(stdout, "\n");
+        clause->val->right_sib = NULL;
+      }
+    }
 
   }
 
@@ -151,15 +185,25 @@ cSet *resolve(lst_node c1, lst_node c2) {
     // For each disjunction in C2
     for (cSet *d2 = disjuncts2; d2 != NULL; d2 = d2->next) {
       // negate d2
-      lst_node d2neg = create_lst_node(NEGATION_N);
-      d2neg->right_sib = NULL;
-      d2neg->left_child = d2->val; // QUESTION: Do I need to move ~ inwards again?
-      assert(d2neg->right_sib == NULL);
+      lst_node d2neg;
+      if (d2->val->node_type == NEGATION_N) {
+        d2neg = d2->val->left_child; // Deep copy here?
+        d2neg->right_sib = NULL;
+        d2neg->parent = NULL;
+        assert(d2neg->right_sib == NULL);
+      } else {
+        d2neg = create_lst_node(NEGATION_N);
+        d2neg->right_sib = NULL;
+        d2neg->left_child = d2->val; // QUESTION: Do I need to move ~ inwards again?
+        assert(d2neg->right_sib == NULL);
+      }
+      
+      
       /* SANITY CHECK */
       printf("Disjunction1: \n");
       print_lst(stdout, d1->val, 0);
 
-      printf("Newgated Disjunction2: \n");
+      printf("Negated Disjunction2: \n");
       print_lst(stdout, d2neg, 0);
 
       // If d1 and ~d2 are unifiable
@@ -192,8 +236,13 @@ cSet *resolve(lst_node c1, lst_node c2) {
         }
 
         printf("====The new set of disjunctions not in these clauses:\n");
-        for (cSet *p = newSet; p != NULL; p = p->next)
-          print_lst(stdout, p->val, 0);
+        for (cSet *p = newSet; p != NULL; p = p->next) {
+          if (!p->val) {
+            fprintf(stdout, "The NULLL clause\n");
+          } else {
+            print_lst(stdout, p->val, 0);
+          }
+        }
 
         printf("====\n");
         // Check if this new set is empty
@@ -219,6 +268,17 @@ cSet *resolve(lst_node c1, lst_node c2) {
 
             resolvents = addSet(resolvents, rejoined);
           }
+          printf("====The set after factoring\n");
+          for (cSet *p = newSet; p != NULL; p = p->next)
+            print_lst(stdout, p->val, 0);
+
+          printf("====\n");
+
+          printf("====The resolvent lst for this set\n");
+          print_lst(stdout, resolvents->val, 0);
+
+          printf("====\n");
+
         } 
       }
     }
@@ -238,8 +298,12 @@ cSet *factor(cSet *set) {
       if ((unify(d1->val, d2->val, empty_sub()))->fail == 0) {
         // Remove the second one
         /* CAUTION: modifying these links is scary and might make stuff whack? */
-        d2->prev->next = d2->next;
-        d2->next->prev = d2->prev;
+        if (d2->next) {  
+          d2->prev->next = d2->next;
+          d2->next->prev = d2->prev;
+        } else {
+          d2->prev->next = NULL;
+        }
       }
     }
   }

@@ -30,7 +30,7 @@ FILE *error_out;  // Global conditionally used in testing mode only
 
 int main() {
   int noRoot = 0;		/* 0 means we will have a root */
-
+  FILE *output = fopen("./proof.out", "w");
   /*   yydebug = 1; */ // Good for debugging, unnecessary for now
 
   /* Build the tree */
@@ -87,10 +87,10 @@ int main() {
   fprintf(stdout, "\n\nSYMBOL LIST (after):\n");
   print_symbol_list(stdout, symbol_list);
 
-  int result = resolution(stdout, root);  
+  int result = resolution(output, root);  
   if (result == 0)
-    fprintf(stdout, "Having derived the empty clause with resolution, by the Ground Resolution Theorem, the query is proven.\n");
+    fprintf(output, "Having derived the empty clause with resolution, by the Ground Resolution Theorem, the query is proven.\n");
   else 
-    fprintf(stdout, "not this time...\n");
+    fprintf(output, "Failed to proove the query...\n");
   return 0;
 }

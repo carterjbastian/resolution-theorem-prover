@@ -1,0 +1,4437 @@
+SYMBOL LIST (before):
+C	(constant)
+B	(constant)
+A	(constant)
+
+
+KNOWLEDGE BASE: (before transformation
+| ROOT 
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT B
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - CONSTANT B
+| - - - CONSTANT A
+| - - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+| - ~ 
+| - - ~ 
+| - - - CONSTANT A
+Looking at branch
+Looking at branch
+Looking at branch
+Looking at branch
+Looking at branch
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+
+
+KNOWLEDGE BASE (after transformation):
+| ROOT 
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT B
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - CONSTANT B
+| - - - CONSTANT A
+| - - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+| - CONSTANT A
+
+
+SYMBOL LIST (after):
+C	(constant)
+B	(constant)
+A	(constant)
+
+
+Proof:
+INITIAL CLAUSES:
+| CONSTANT A
+
+| ~ 
+| - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+
+Every clause after this is derived by resolution of previous listed clauses
+==========================================
+
+Resolvent 1:
+| CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+====
+| CONSTANT B
+====The set after factoring
+| CONSTANT B
+====
+====The resolvent lst for this set
+| CONSTANT B
+====
+	---Exiting Resolve---
+Produces:
+| CONSTANT B
+
+
+Reprinting Resolvent 1:
+| CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| CONSTANT A
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT B
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+====
+| ~ 
+| - CONSTANT A
+====The set after factoring
+| ~ 
+| - CONSTANT A
+====
+====The resolvent lst for this set
+| ~ 
+| - CONSTANT A
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT B
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT B
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT B
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT C
+====
+| ~ 
+| - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT C
+====
+====The resolvent lst for this set
+| ~ 
+| - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT A
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+====
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+| CONSTANT A
+====
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+====The set after factoring
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+
+
+NEW CLAUSES (iteration 1)
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+
+| ~ 
+| - CONSTANT C
+
+| ~ 
+| - CONSTANT A
+
+| CONSTANT B
+
+| CONSTANT A
+
+| ~ 
+| - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - v 
+| - - - CONSTANT B
+| - - - ~ 
+| - - - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - v 
+| - - - CONSTANT B
+| - - - ~ 
+| - - - - CONSTANT B
+====
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - v 
+| - - - CONSTANT B
+| - - - ~ 
+| - - - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT C
+| - - v 
+| - - - CONSTANT A
+| - - - ~ 
+| - - - - CONSTANT B
+====The set after factoring
+| CONSTANT B
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT C
+| - - v 
+| - - - CONSTANT A
+| - - - ~ 
+| - - - - CONSTANT B
+====
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT C
+| - - v 
+| - - - CONSTANT A
+| - - - ~ 
+| - - - - CONSTANT B
+
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT A
+| CONSTANT B
+====
+| v 
+| - CONSTANT A
+| - CONSTANT B
+====The set after factoring
+| CONSTANT A
+| CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT A
+| - CONSTANT B
+====
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT A
+| - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT B
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT B
+====
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+====The set after factoring
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+| CONSTANT B
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT C
+| CONSTANT A
+| CONSTANT B
+====
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+====The set after factoring
+| ~ 
+| - CONSTANT C
+| CONSTANT A
+| CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT A
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT C
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT C
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT C
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - v 
+| - - - CONSTANT A
+| - - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+====
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT C
+====The set after factoring
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT A
+| - ~ 
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT C
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT C
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT A
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+====The set after factoring
+| CONSTANT B
+| CONSTANT A
+| ~ 
+| - CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT C
+| - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+====
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT A
+====The set after factoring
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT A
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT A
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+====
+| v 
+| - CONSTANT C
+| - CONSTANT A
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - CONSTANT A
+====
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+| CONSTANT C
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT C
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+| CONSTANT A
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+====The set after factoring
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT A
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+====
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT A
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT A
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - v 
+| - - ~ 
+| - - - CONSTANT A
+| - - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT A
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| ~ 
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| ~ 
+| - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| CONSTANT C
+====
+| v 
+| - CONSTANT B
+| - CONSTANT C
+====The set after factoring
+| CONSTANT B
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - CONSTANT C
+====
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| CONSTANT A
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - ~ 
+| - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - ~ 
+| - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT A
+| CONSTANT B
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT A
+| CONSTANT B
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+====The new set of disjunctions not in these clauses:
+| CONSTANT C
+| CONSTANT A
+| CONSTANT C
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+====The set after factoring
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT C
+| - v 
+| - - CONSTANT A
+| - - ~ 
+| - - - CONSTANT B
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+| CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT C
+| CONSTANT B
+| CONSTANT C
+====
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+====The set after factoring
+| ~ 
+| - CONSTANT C
+| CONSTANT B
+| CONSTANT C
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT B
+Negated Disjunction2: 
+| CONSTANT C
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+====The new set of disjunctions not in these clauses:
+| CONSTANT B
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====The set after factoring
+| CONSTANT B
+| ~ 
+| - CONSTANT B
+====
+====The resolvent lst for this set
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - CONSTANT B
+| - ~ 
+| - - CONSTANT B
+
+| v 
+| - ~ 
+| - - CONSTANT C
+| - v 
+| - - CONSTANT B
+| - - CONSTANT C
+
+
+Reprinting Resolvent 1:
+| v 
+| - CONSTANT C
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT B
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| ~ 
+| - CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT A
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| CONSTANT A
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| ~ 
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| ~ 
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT A
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT A
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT C
+| CONSTANT A
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT C
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+====
+| v 
+| - ~ 
+| - - CONSTANT B
+| - CONSTANT A
+====The set after factoring
+| ~ 
+| - CONSTANT B
+| CONSTANT A
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - CONSTANT B
+| - CONSTANT A
+====
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT B
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - CONSTANT B
+| - CONSTANT A
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - CONSTANT B
+| - - CONSTANT A
+| - CONSTANT C
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT C
+Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT C
+Printing disjunctions set #2
+| CONSTANT B
+| ~ 
+| - CONSTANT C
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT C
+Negated Disjunction2: 
+| CONSTANT C
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT C
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - CONSTANT C
+| - CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT A
+Resolvent 2:
+| CONSTANT B
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+Printing disjunctions set #2
+| CONSTANT B
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT B
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT B
+==========================================
+
+Resolvent 1:
+| ~ 
+| - CONSTANT A
+Resolvent 2:
+| CONSTANT A
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - CONSTANT A
+Printing disjunctions set #2
+| CONSTANT A
+Disjunction1: 
+| ~ 
+| - CONSTANT A
+Negated Disjunction2: 
+| ~ 
+| - CONSTANT A
+====The new set of disjunctions not in these clauses:
+The NULLL clause
+====
+	---Exiting Resolve---
+Produces:
+| NULL 
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - CONSTANT A
+Reprinting Resolvent 2:
+| CONSTANT A

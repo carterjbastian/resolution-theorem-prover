@@ -356,7 +356,8 @@ lst_node clean_tree(lst_node *root) {
   if ((*root)->node_type == NULL_N) {  
     fprintf(stdout, "Found a null node\n");
     // Remove it from the tree
-    
+   
+    if ((*root)->parent) {
     // Find where it is in relation to its siblings
     lst_node lSib = NULL;
     if ((*root)->parent->left_child == (*root)) {
@@ -375,6 +376,9 @@ lst_node clean_tree(lst_node *root) {
       (*root)->left_child->right_sib = (*root)->right_sib;
       (*root)->left_child->parent = (*root)->parent;
       *root = (*root)->parent;      
+    }
+    } else {
+      return clean_tree(&((*root)->left_child));
     }
   }
     
