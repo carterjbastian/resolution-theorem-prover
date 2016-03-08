@@ -87,6 +87,10 @@ int main() {
   fprintf(stdout, "\n\nSYMBOL LIST (after):\n");
   print_symbol_list(stdout, symbol_list);
 
-  resolution(stdout, root);  
+  int result = resolution(stdout, root);  
+  if (result == 0)
+    fprintf(stdout, "YOU DID IT YOU CRAZY MOTHERFUCKER, YOU PROVED IT!!\n");
+  else 
+    fprintf(stdout, "not this time...\n");
   return 0;
 }

@@ -1,30 +1,18 @@
-CS: 0;
-RS: NatNum;
-VS: n;
-VS: m;
-VS: a;
-VS: b;
-VS: c;
-VS: w;
+CS: John;
+CS: Jane;
+CS: Bill;
+CS: Jack;
+CS: Elizabeth;
+RS: Knows;
+FS: Mother;
 VS: x;
 VS: y;
 VS: z;
-FS: S;
-FS: Add;
 
-@x x = x;
-@x @y y = x => x = y;
-@x @y @z x = y ^ y = z => x = z;
+@x Knows(John, x);
+Knows(John, Jane);
+@y Knows(y, Bill);
+@z Knows(z, Mother(z));
+Knows(Jane, John);
 
-NatNum(0);
-@n NatNum(n) => NatNum(S(n));
-@n ~(0 = S(n));
-@n @m ~(m = n) => ~(S(m) = S(n));
-@m NatNum(m) => Add(0, m) = m;
-@m @n NatNum(m) ^ NatNum(n) => Add(S(m), n) =  S(Add(m,n));
-
-@x @y x = y => (NatNum(x) <=> NatNum(y));
-@x @y x = y => (S(x) = S(y));
-@w @x @y @z w = y ^ x = z => (Add(w,x) = Add(y,x));
-
-QS: @a @b @c @x (a ^ x) v (b ^ c);
+QS: Knows(John, Jack);

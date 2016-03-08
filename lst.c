@@ -31,7 +31,14 @@ lst_node shallow_copy(lst_node node) {
 
   return copy;
 }
- 
+
+lst_node deep_copy(lst_node node) {
+  lst_node copy = calloc(1, sizeof(struct lst_node_struct));
+
+  memcpy(copy, node, sizeof(struct lst_node_struct));
+
+  return copy;
+} 
 void print_lst(FILE *fp, lst_node root, int depth) {
   /* Print two spaces for every level of depth. */
   int i;
@@ -76,6 +83,12 @@ symlist_node *append_symlist(symlist_node *list, char *name) {
 }
 
 int tree_equals(lst_node t1, lst_node t2) {
+  if (!t1 && !t2)
+    return 0;
+
+  if (!t1 || !t2)
+    return 1;
+  
   // Check that the current node's values are the same for both trees
   // Must check both node type and value string
   if (t1->node_type != t2->node_type)

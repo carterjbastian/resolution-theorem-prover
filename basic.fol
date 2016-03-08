@@ -1,0 +1,7 @@
+CS: me;
+RS: Frustrated;
+VS: x;
+
+@x Frustrated(x);
+
+QS: Frustrated(me);

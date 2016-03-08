@@ -1,0 +1,14 @@
+CS: John;
+CS: Richard;
+RS: King;
+RS: Greedy;
+RS: Evil;
+RS: Brother;
+VS: x;
+
+@x King(x) ^ Greedy(x) => Evil(x);
+King(John);
+Greedy(John);
+Brother(Richard, John);
+
+QS: Evil(John);
