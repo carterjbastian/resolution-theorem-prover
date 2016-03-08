@@ -61,6 +61,12 @@ cSet *addSet(cSet *set, lst_node val) {
   // Link the new set in at beggining of old set (if it's non-null)
   ret->next = set;
 
+  // Strip the empty set entry on the end of a set
+  if (ret->next->val == NULL)
+    ret->next = NULL;
+  else
+    ret->next->prev = ret;
+
   return ret;
 }
 
@@ -85,6 +91,7 @@ cSet *joinSet(cSet *s1, cSet *s2) {
 
   // Connect last item in second set to first item in first set
   last->next = s1;
+  s2->prev = last;
  
   // s2 is now the beginning of the newly conjoined set
   // NOTE: there may be duplicate items (and this is ok because we factor) 

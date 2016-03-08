@@ -15,7 +15,7 @@ int resolution(FILE *fp, lst_node kb);
 
 cSet *resolve(lst_node c1, lst_node c2);
 
-cSet *factor(lst_node clause);
+cSet *factor(cSet *set);
 
 cSub *unify(lst_node c1, lst_node c2, cSub *sub);
 

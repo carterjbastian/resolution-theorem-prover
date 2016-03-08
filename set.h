@@ -31,6 +31,7 @@ cSub *find_sub(cSub *sub, lst_node var);
 typedef struct cSet {
   lst_node val;
   struct cSet *next;
+  struct cSet *prev;
 } cSet;
 
 cSet *generate_set();

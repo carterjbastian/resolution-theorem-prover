@@ -13,6 +13,8 @@
 
 #include "lst.h"
 #include "transformations.h"
+#include "set.h"
+#include "resolution.h"
 
 lst_node root = NULL;
 lst_node query = NULL;
@@ -84,5 +86,7 @@ int main() {
 
   fprintf(stdout, "\n\nSYMBOL LIST (after):\n");
   print_symbol_list(stdout, symbol_list);
+
+  resolution(stdout, root);  
   return 0;
 }
