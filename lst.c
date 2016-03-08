@@ -75,6 +75,102 @@ void print_lst(FILE *fp, lst_node root, int depth) {
     print_lst(fp, child, depth + 1);
 }  
 
+void print_clause(FILE *fp, lst_node clause) {
+  // A recursive function to print a clause as a string
+  assert(clause);
+
+  switch(clause->node_type) {
+    case NULL_N :
+      fprintf(fp, "{ } (empty clause)");
+      break;
+
+    case FUNCTION_N :
+      // Print it's name, open parentheses, recurse on parameters, and close parens
+      fprintf(fp, "%s(", clause->value_string);
+      
+      for (lst_node curr = clause->left_child; curr != NULL; curr = curr->right_sib) {
+        // Recurse on child
+        print_clause(fp, curr);
+        if (curr->right_sib)
+          fprintf(fp, ", ");
+      }
+      
+      fprintf(fp, ")");
+
+      break;
+
+    case RELATION_N :
+      // Print it's name, open parentheses, recurse on parameters, and close parens
+      fprintf(fp, "%s(", clause->value_string);
+      
+      for (lst_node curr = clause->left_child; curr != NULL; curr = curr->right_sib) {
+        // Recurse on child
+        print_clause(fp, curr);
+        if (curr->right_sib)
+          fprintf(fp, ", ");
+      }
+      
+      fprintf(fp, ")");
+
+      break;
+
+    case SKOLEM_N :
+      // Print it's name, open parentheses, recurse on parameters, and close parens
+      fprintf(fp, "%s(", clause->value_string);
+      
+      for (lst_node curr = clause->left_child; curr != NULL; curr = curr->right_sib) {
+        // Recurse on child
+        print_clause(fp, curr);
+        if (curr->right_sib)
+          fprintf(fp, ", ");
+      }
+      
+      fprintf(fp, ")");
+
+      break;
+
+    case NEGATION_N :
+      // print the negation sign, and then it's left child
+      fprintf(fp, "~(");
+      print_clause(fp, clause->left_child);
+      fprintf(fp, ")");
+
+      break;
+
+    case VARIABLE_N :
+      // Print it's name only
+      fprintf(fp, "%s", clause->value_string);
+
+      break;
+
+    case CONSTANT_N :
+      // Print it's name only
+      fprintf(fp, "%s", clause->value_string);
+
+      break;
+
+    case EQUALS_N:
+      // Print it's first child, and equal sign, and then it's second child
+      fprintf(fp, "(");
+      print_clause(fp, clause->left_child);
+      fprintf(fp, " = ");
+      print_clause(fp, clause->left_child->right_sib);
+      fprintf(fp, ")");
+      break;
+
+    case DISJUNCTION_N:
+      // Print it's first child, and equal sign, and then it's second child
+      fprintf(fp, "(");
+      print_clause(fp, clause->left_child);
+      fprintf(fp, " v ");
+      print_clause(fp, clause->left_child->right_sib);
+      fprintf(fp, ")");
+      break;
+
+    default :
+      fprintf(fp, " SOMETHING_ELSE ");
+  }
+}
 
 symlist_node *create_listnode(char *name) {
   symlist_node *new_node = calloc(1, sizeof(symlist_node));

@@ -1,0 +1,55 @@
+Proof of query:
+All of the following clauses are derived from the knowledge base by resolution.
+
+PREVIOUS CLAUSES (before iteration 1)
+((~(NatNum(f)) v ~((f = Add($F1(), $F2())))) v ~((d = Add(f, $F()))))
+(d = Add($F3(d), $F2()))
+($F3(d) = Add($F(), $F1()))
+NatNum($F3(d))
+NatNum(d)
+NatNum($F2())
+NatNum($F1())
+NatNum($F())
+((~((w = y4)) v ~((x5 = z1))) v (Add(w, x5) = Add(y4, x5)))
+(~((x4 = y3)) v (S(x4) = S(y3)))
+((~(NatNum(y2)) v NatNum(x3)) v ~((x3 = y2)))
+((~(NatNum(x3)) v NatNum(y2)) v ~((x3 = y2)))
+((~(NatNum(m2)) v ~(NatNum(n3))) v (Add(S(m2), n3) = S(Add(m2, n3))))
+(~(NatNum(m1)) v (Add(0, m1) = m1))
+((m = n2) v ~((S(m) = S(n2))))
+~((0 = S(n1)))
+(~(NatNum(n)) v NatNum(S(n)))
+NatNum(0)
+((~((x2 = y1)) v ~((y1 = z))) v (x2 = z))
+(~((y = x1)) v (x1 = y))
+(x = x)
+
+
+FINAL CLAUSES (from iteration 1)
+(m = n2)
+(~(NatNum(x3)) v NatNum(y2))
+(~(NatNum(y2)) v NatNum(x3))
+(S(x4) = S(y3))
+((Add(w, x5) = Add(y4, x5)) v ~((w = y4)))
+((Add(w, x5) = Add(y4, x5)) v ~((x5 = z1)))
+(~(NatNum(f)) v ~((f = Add($F1(), $F2()))))
+(~((y = x1)) v ~(NatNum(f)))
+(~((x2 = y1)) v ~(NatNum(f)))
+(~(NatNum(n)) v ~((d = Add(f, $F()))))
+(~((S(m) = S(n2))) v ~(NatNum(f)))
+(~(NatNum(m1)) v ~((f = Add($F1(), $F2()))))
+(~(NatNum(m1)) v ~((d = Add(f, $F()))))
+(~(NatNum(m2)) v ~((f = Add($F1(), $F2()))))
+(~(NatNum(m2)) v ~((d = Add(f, $F()))))
+(~((x3 = y2)) v ~(NatNum(x3)))
+(~((x3 = y2)) v ~(NatNum(y2)))
+(~((x4 = y3)) v ~(NatNum(f)))
+(~((w = y4)) v ~(NatNum(f)))
+~((d = Add(f, $F())))
+(~((d = Add(f, $F()))) v ~(NatNum(f)))
+{ } (empty clause)
+
+Having derived the empty clause with resolution, by the Ground Resolution
+Theorem, the query is proven.
+Note that each of the FINAL CLAUSES (including the empty clause) was
+derived by resolution on two of the PREVIOUS CLAUSES.

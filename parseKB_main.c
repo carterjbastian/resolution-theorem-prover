@@ -88,9 +88,11 @@ int main() {
   print_symbol_list(stdout, symbol_list);
 
   int result = resolution(output, root);  
-  if (result == 0)
-    fprintf(output, "Having derived the empty clause with resolution, by the Ground Resolution Theorem, the query is proven.\n");
-  else 
+  if (result == 0) {
+    fprintf(output, "\nHaving derived the empty clause with resolution, by the Ground Resolution\nTheorem, the query is proven.\n");
+    fprintf(output, "Note that each of the FINAL CLAUSES (including the empty clause) was\nderived by resolution on two of the PREVIOUS CLAUSES.\n");
+  } else  {
     fprintf(output, "Failed to proove the query...\n");
+  }
   return 0;
 }

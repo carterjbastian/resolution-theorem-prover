@@ -1,31 +1,12 @@
 Proof of query:
 All of the following clauses are derived from the knowledge base by resolution.
 
-PREVIOUS CLAUSES (before iteration 2)
-B
-~(A)
-~(C)
-(C v (~(B) v B))
-(C v (A v ~(A)))
-(~(C) v (C v A))
-(B v (~(B) v A))
-A
-~(B)
-(~(A) v B)
-((~(B) v A) v C)
-(~(C) v B)
+PREVIOUS CLAUSES (before iteration 1)
+~(Frustrated(me))
+Frustrated(x)
 
 
-FINAL CLAUSES (from iteration 2)
-(A v B)
-(B v C)
-(B v (~(B) v A))
-(~(C) v (C v A))
-(C v (A v ~(A)))
-(C v (~(B) v B))
-~(C)
-~(A)
-B
+FINAL CLAUSES (from iteration 1)
 { } (empty clause)
 
 Having derived the empty clause with resolution, by the Ground Resolution

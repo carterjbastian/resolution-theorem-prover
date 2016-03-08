@@ -1,0 +1,3067 @@
+SYMBOL LIST (before):
+x	(variable)
+Brother	(relation)
+Evil	(relation)
+Greedy	(relation)
+King	(relation)
+Richard	(constant)
+John	(constant)
+
+
+KNOWLEDGE BASE: (before transformation
+| ROOT 
+| - @ x
+| - - => 
+| - - - ^ 
+| - - - - RELATION King
+| - - - - - VARIABLE x
+| - - - - RELATION Greedy
+| - - - - - VARIABLE x
+| - - - RELATION Evil
+| - - - - VARIABLE x
+| - RELATION King
+| - - CONSTANT John
+| - RELATION Greedy
+| - - CONSTANT John
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+| - ~ 
+| - - RELATION Evil
+| - - - CONSTANT John
+Looking at branch
+Found a null node
+It's the leftmost child
+Found a null node
+It's the leftmost child
+
+
+KNOWLEDGE BASE (after transformation):
+| ROOT 
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - RELATION King
+| - - - - - VARIABLE x
+| - - - ~ 
+| - - - - RELATION Greedy
+| - - - - - VARIABLE x
+| - - RELATION Evil
+| - - - VARIABLE x
+| - RELATION King
+| - - CONSTANT John
+| - RELATION Greedy
+| - - CONSTANT John
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+| - ~ 
+| - - RELATION Evil
+| - - - CONSTANT John
+
+
+SYMBOL LIST (after):
+x	(variable)
+Brother	(relation)
+Evil	(relation)
+Greedy	(relation)
+King	(relation)
+Richard	(constant)
+John	(constant)
+
+
+Proof:
+INITIAL CLAUSES:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+
+| RELATION Greedy
+| - CONSTANT John
+
+| RELATION King
+| - CONSTANT John
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+
+Every clause after this is derived by resolution of previous listed clauses
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Greedy
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Greedy
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+====
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION King
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION King
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| RELATION King
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+
+
+NEW CLAUSES (iteration 1)
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+
+| RELATION Greedy
+| - CONSTANT John
+
+| RELATION King
+| - CONSTANT John
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+====
+| RELATION Evil
+| - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+====
+====The resolvent lst for this set
+| RELATION Evil
+| - VARIABLE x
+====
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+| RELATION Evil
+| - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+====
+| RELATION Evil
+| - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+====
+====The resolvent lst for this set
+| RELATION Evil
+| - VARIABLE x
+====
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+| RELATION Evil
+| - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION Evil
+| - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Greedy
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION Greedy
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+====
+Disjunction1: 
+| RELATION Greedy
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| RELATION Greedy
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION King
+| - CONSTANT John
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION King
+| - CONSTANT John
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| RELATION King
+| - CONSTANT John
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====The set after factoring
+| RELATION Evil
+| - VARIABLE x
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| RELATION King
+| - CONSTANT John
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+
+
+NEW CLAUSES (iteration 2)
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+
+| RELATION Evil
+| - VARIABLE x
+
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+
+| RELATION Greedy
+| - CONSTANT John
+
+| RELATION King
+| - CONSTANT John
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION King
+| - - - - VARIABLE x
+| - - ~ 
+| - - - RELATION Greedy
+| - - - - VARIABLE x
+| - RELATION Evil
+| - - VARIABLE x
+
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| RELATION Evil
+| - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Evil
+| - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION King
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION King
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Greedy
+| - - VARIABLE x
+| RELATION Evil
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Greedy
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Evil
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| v 
+| - RELATION Evil
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Greedy
+| - - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Evil
+| - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Evil
+| - - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Brother
+| - - CONSTANT Richard
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Brother
+| - CONSTANT Richard
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Greedy
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Greedy
+| - - CONSTANT John
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Greedy
+| - CONSTANT John
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Resolvent 2:
+| RELATION King
+| - CONSTANT John
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION King
+| - CONSTANT John
+Disjunction1: 
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION King
+| - - CONSTANT John
+====The new set of disjunctions not in these clauses:
+The NULLL clause
+====
+	---Exiting Resolve---
+Produces:
+| NULL 
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION King
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION King
+| - CONSTANT John

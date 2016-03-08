@@ -1,0 +1,2051 @@
+SYMBOL LIST (before):
+Add	(function)
+S	(function)
+z	(variable)
+y	(variable)
+x	(variable)
+w	(variable)
+c	(variable)
+b	(variable)
+a	(variable)
+m	(variable)
+n	(variable)
+NatNum	(relation)
+0	(constant)
+
+
+KNOWLEDGE BASE: (before transformation
+| ROOT 
+| - @ x
+| - - = 
+| - - - VARIABLE x
+| - - - VARIABLE x
+| - @ x
+| - - @ y
+| - - - => 
+| - - - - = 
+| - - - - - VARIABLE y
+| - - - - - VARIABLE x
+| - - - - = 
+| - - - - - VARIABLE x
+| - - - - - VARIABLE y
+| - @ x
+| - - @ y
+| - - - @ z
+| - - - - => 
+| - - - - - ^ 
+| - - - - - - = 
+| - - - - - - - VARIABLE x
+| - - - - - - - VARIABLE y
+| - - - - - - = 
+| - - - - - - - VARIABLE y
+| - - - - - - - VARIABLE z
+| - - - - - = 
+| - - - - - - VARIABLE x
+| - - - - - - VARIABLE z
+| - RELATION NatNum
+| - - CONSTANT 0
+| - @ n
+| - - => 
+| - - - RELATION NatNum
+| - - - - VARIABLE n
+| - - - RELATION NatNum
+| - - - - FUNCTION S
+| - - - - - VARIABLE n
+| - @ n
+| - - ~ 
+| - - - = 
+| - - - - CONSTANT 0
+| - - - - FUNCTION S
+| - - - - - VARIABLE n
+| - @ n
+| - - @ m
+| - - - => 
+| - - - - ~ 
+| - - - - - = 
+| - - - - - - VARIABLE m
+| - - - - - - VARIABLE n
+| - - - - ~ 
+| - - - - - = 
+| - - - - - - FUNCTION S
+| - - - - - - - VARIABLE m
+| - - - - - - FUNCTION S
+| - - - - - - - VARIABLE n
+| - @ m
+| - - => 
+| - - - RELATION NatNum
+| - - - - VARIABLE m
+| - - - = 
+| - - - - FUNCTION Add
+| - - - - - CONSTANT 0
+| - - - - - VARIABLE m
+| - - - - VARIABLE m
+| - @ m
+| - - @ n
+| - - - => 
+| - - - - ^ 
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE m
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE n
+| - - - - = 
+| - - - - - FUNCTION Add
+| - - - - - - FUNCTION S
+| - - - - - - - VARIABLE m
+| - - - - - - VARIABLE n
+| - - - - - FUNCTION S
+| - - - - - - FUNCTION Add
+| - - - - - - - VARIABLE m
+| - - - - - - - VARIABLE n
+| - @ x
+| - - @ y
+| - - - => 
+| - - - - = 
+| - - - - - VARIABLE x
+| - - - - - VARIABLE y
+| - - - - <=> 
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE x
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE y
+| - @ x
+| - - @ y
+| - - - => 
+| - - - - = 
+| - - - - - VARIABLE x
+| - - - - - VARIABLE y
+| - - - - = 
+| - - - - - FUNCTION S
+| - - - - - - VARIABLE x
+| - - - - - FUNCTION S
+| - - - - - - VARIABLE y
+| - @ w
+| - - @ x
+| - - - @ y
+| - - - - @ z
+| - - - - - => 
+| - - - - - - ^ 
+| - - - - - - - = 
+| - - - - - - - - VARIABLE w
+| - - - - - - - - VARIABLE y
+| - - - - - - - = 
+| - - - - - - - - VARIABLE x
+| - - - - - - - - VARIABLE z
+| - - - - - - = 
+| - - - - - - - FUNCTION Add
+| - - - - - - - - VARIABLE w
+| - - - - - - - - VARIABLE x
+| - - - - - - - FUNCTION Add
+| - - - - - - - - VARIABLE y
+| - - - - - - - - VARIABLE x
+| - ~ 
+| - - @ a
+| - - - @ b
+| - - - - # c
+| - - - - - => 
+| - - - - - - ^ 
+| - - - - - - - ^ 
+| - - - - - - - - ^ 
+| - - - - - - - - - RELATION NatNum
+| - - - - - - - - - - VARIABLE a
+| - - - - - - - - - RELATION NatNum
+| - - - - - - - - - - VARIABLE b
+| - - - - - - - - RELATION NatNum
+| - - - - - - - - - VARIABLE c
+| - - - - - - - = 
+| - - - - - - - - VARIABLE c
+| - - - - - - - - FUNCTION Add
+| - - - - - - - - - VARIABLE a
+| - - - - - - - - - VARIABLE b
+| - - - - - - = 
+| - - - - - - - VARIABLE c
+| - - - - - - - FUNCTION Add
+| - - - - - - - - VARIABLE b
+| - - - - - - - - VARIABLE a
+Looking at branch
+Found a null node
+It's the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's not the leftmost child
+Found a null node
+It's the leftmost child
+Found a null node
+It's the leftmost child
+
+
+KNOWLEDGE BASE (after transformation):
+| ROOT 
+| - = 
+| - - VARIABLE x
+| - - VARIABLE x
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE y
+| - - - - VARIABLE x1
+| - - = 
+| - - - VARIABLE x1
+| - - - VARIABLE y
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE x2
+| - - - - - VARIABLE y1
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE y1
+| - - - - - VARIABLE z
+| - - = 
+| - - - VARIABLE x2
+| - - - VARIABLE z
+| - RELATION NatNum
+| - - CONSTANT 0
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE n
+| - - RELATION NatNum
+| - - - FUNCTION S
+| - - - - VARIABLE n
+| - ~ 
+| - - = 
+| - - - CONSTANT 0
+| - - - FUNCTION S
+| - - - - VARIABLE n1
+| - v 
+| - - = 
+| - - - VARIABLE m
+| - - - VARIABLE n2
+| - - ~ 
+| - - - = 
+| - - - - FUNCTION S
+| - - - - - VARIABLE m
+| - - - - FUNCTION S
+| - - - - - VARIABLE n2
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE m1
+| - - = 
+| - - - FUNCTION Add
+| - - - - CONSTANT 0
+| - - - - VARIABLE m1
+| - - - VARIABLE m1
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - RELATION NatNum
+| - - - - - VARIABLE m2
+| - - - ~ 
+| - - - - RELATION NatNum
+| - - - - - VARIABLE n3
+| - - = 
+| - - - FUNCTION Add
+| - - - - FUNCTION S
+| - - - - - VARIABLE m2
+| - - - - VARIABLE n3
+| - - - FUNCTION S
+| - - - - FUNCTION Add
+| - - - - - VARIABLE m2
+| - - - - - VARIABLE n3
+| - ^ 
+| - - v 
+| - - - v 
+| - - - - ~ 
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE x3
+| - - - - RELATION NatNum
+| - - - - - VARIABLE y2
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE x3
+| - - - - - VARIABLE y2
+| - - v 
+| - - - v 
+| - - - - ~ 
+| - - - - - RELATION NatNum
+| - - - - - - VARIABLE y2
+| - - - - RELATION NatNum
+| - - - - - VARIABLE x3
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE x3
+| - - - - - VARIABLE y2
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x4
+| - - - - VARIABLE y3
+| - - = 
+| - - - FUNCTION S
+| - - - - VARIABLE x4
+| - - - FUNCTION S
+| - - - - VARIABLE y3
+| - v 
+| - - v 
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE w
+| - - - - - VARIABLE y4
+| - - - ~ 
+| - - - - = 
+| - - - - - VARIABLE x5
+| - - - - - VARIABLE z1
+| - - = 
+| - - - FUNCTION Add
+| - - - - VARIABLE w
+| - - - - VARIABLE x5
+| - - - FUNCTION Add
+| - - - - VARIABLE y4
+| - - - - VARIABLE x5
+| - ^ 
+| - - ^ 
+| - - - ^ 
+| - - - - ^ 
+| - - - - - RELATION NatNum
+| - - - - - - SKOLEM_FUNCTION $F
+| - - - - - RELATION NatNum
+| - - - - - - SKOLEM_FUNCTION $F1
+| - - - - RELATION NatNum
+| - - - - - VARIABLE c
+| - - - = 
+| - - - - VARIABLE c
+| - - - - FUNCTION Add
+| - - - - - SKOLEM_FUNCTION $F
+| - - - - - SKOLEM_FUNCTION $F1
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE c
+| - - - - FUNCTION Add
+| - - - - - SKOLEM_FUNCTION $F1
+| - - - - - SKOLEM_FUNCTION $F
+
+
+SYMBOL LIST (after):
+$F1	(skolem function)
+$F	(skolem function)
+z1	(variable)
+y4	(variable)
+x5	(variable)
+y3	(variable)
+x4	(variable)
+y2	(variable)
+x3	(variable)
+n3	(variable)
+m2	(variable)
+m1	(variable)
+n2	(variable)
+n1	(variable)
+y1	(variable)
+x2	(variable)
+x1	(variable)
+Add	(function)
+S	(function)
+z	(variable)
+y	(variable)
+x	(variable)
+w	(variable)
+c	(variable)
+b	(variable)
+a	(variable)
+m	(variable)
+n	(variable)
+NatNum	(relation)
+0	(constant)
+
+
+Proof:
+INITIAL CLAUSES:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+
+| = 
+| - VARIABLE c
+| - FUNCTION Add
+| - - SKOLEM_FUNCTION $F
+| - - SKOLEM_FUNCTION $F1
+
+| RELATION NatNum
+| - VARIABLE c
+
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F1
+
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F
+
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE w
+| - - - - VARIABLE y4
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x5
+| - - - - VARIABLE z1
+| - = 
+| - - FUNCTION Add
+| - - - VARIABLE w
+| - - - VARIABLE x5
+| - - FUNCTION Add
+| - - - VARIABLE y4
+| - - - VARIABLE x5
+
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE x4
+| - - - VARIABLE y3
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE x4
+| - - FUNCTION S
+| - - - VARIABLE y3
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE y2
+| - - RELATION NatNum
+| - - - VARIABLE x3
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE x3
+| - - RELATION NatNum
+| - - - VARIABLE y2
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE m2
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE n3
+| - = 
+| - - FUNCTION Add
+| - - - FUNCTION S
+| - - - - VARIABLE m2
+| - - - VARIABLE n3
+| - - FUNCTION S
+| - - - FUNCTION Add
+| - - - - VARIABLE m2
+| - - - - VARIABLE n3
+
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE m1
+| - = 
+| - - FUNCTION Add
+| - - - CONSTANT 0
+| - - - VARIABLE m1
+| - - VARIABLE m1
+
+| v 
+| - = 
+| - - VARIABLE m
+| - - VARIABLE n2
+| - ~ 
+| - - = 
+| - - - FUNCTION S
+| - - - - VARIABLE m
+| - - - FUNCTION S
+| - - - - VARIABLE n2
+
+| ~ 
+| - = 
+| - - CONSTANT 0
+| - - FUNCTION S
+| - - - VARIABLE n1
+
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE n
+| - RELATION NatNum
+| - - FUNCTION S
+| - - - VARIABLE n
+
+| RELATION NatNum
+| - CONSTANT 0
+
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x2
+| - - - - VARIABLE y1
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE y1
+| - - - - VARIABLE z
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE z
+
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE y
+| - - - VARIABLE x1
+| - = 
+| - - VARIABLE x1
+| - - VARIABLE y
+
+| = 
+| - VARIABLE x
+| - VARIABLE x
+
+Every clause after this is derived by resolution of previous listed clauses
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| = 
+| - VARIABLE c
+| - FUNCTION Add
+| - - SKOLEM_FUNCTION $F
+| - - SKOLEM_FUNCTION $F1
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - VARIABLE c
+| - FUNCTION Add
+| - - SKOLEM_FUNCTION $F
+| - - SKOLEM_FUNCTION $F1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F
+| - - - SKOLEM_FUNCTION $F1
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| = 
+| - VARIABLE c
+| - FUNCTION Add
+| - - SKOLEM_FUNCTION $F
+| - - SKOLEM_FUNCTION $F1
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| RELATION NatNum
+| - VARIABLE c
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| RELATION NatNum
+| - VARIABLE c
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE c
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| RELATION NatNum
+| - VARIABLE c
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F1
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - SKOLEM_FUNCTION $F1
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F1
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - SKOLEM_FUNCTION $F
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| RELATION NatNum
+| - SKOLEM_FUNCTION $F
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE w
+| - - - - VARIABLE y4
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x5
+| - - - - VARIABLE z1
+| - = 
+| - - FUNCTION Add
+| - - - VARIABLE w
+| - - - VARIABLE x5
+| - - FUNCTION Add
+| - - - VARIABLE y4
+| - - - VARIABLE x5
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - FUNCTION Add
+| - - VARIABLE w
+| - - VARIABLE x5
+| - FUNCTION Add
+| - - VARIABLE y4
+| - - VARIABLE x5
+| ~ 
+| - = 
+| - - VARIABLE x5
+| - - VARIABLE z1
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - FUNCTION Add
+| - - - VARIABLE w
+| - - - VARIABLE x5
+| - - FUNCTION Add
+| - - - VARIABLE y4
+| - - - VARIABLE x5
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+| ~ 
+| - = 
+| - - VARIABLE x5
+| - - VARIABLE z1
+====
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+====The set after factoring
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+====
+====The resolvent lst for this set
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE x5
+| - VARIABLE z1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE w
+| - VARIABLE y4
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - = 
+| - - VARIABLE w
+| - - VARIABLE y4
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE w
+| - - - - VARIABLE y4
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x5
+| - - - - VARIABLE z1
+| - = 
+| - - FUNCTION Add
+| - - - VARIABLE w
+| - - - VARIABLE x5
+| - - FUNCTION Add
+| - - - VARIABLE y4
+| - - - VARIABLE x5
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE x4
+| - - - VARIABLE y3
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE x4
+| - - FUNCTION S
+| - - - VARIABLE y3
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - FUNCTION S
+| - - VARIABLE x4
+| - FUNCTION S
+| - - VARIABLE y3
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE x4
+| - - FUNCTION S
+| - - - VARIABLE y3
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+====
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+====The set after factoring
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+====
+====The resolvent lst for this set
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE x4
+| - VARIABLE y3
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - = 
+| - - VARIABLE x4
+| - - VARIABLE y3
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE x4
+| - - - VARIABLE y3
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE x4
+| - - FUNCTION S
+| - - - VARIABLE y3
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE y2
+| - - RELATION NatNum
+| - - - VARIABLE x3
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| ~ 
+| - = 
+| - - VARIABLE x3
+| - - VARIABLE y2
+| RELATION NatNum
+| - VARIABLE x3
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE y2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE x3
+| - VARIABLE y2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE x3
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE y2
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE y2
+| - - RELATION NatNum
+| - - - VARIABLE x3
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE x3
+| - - RELATION NatNum
+| - - - VARIABLE y2
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| ~ 
+| - = 
+| - - VARIABLE x3
+| - - VARIABLE y2
+| RELATION NatNum
+| - VARIABLE y2
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE x3
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE x3
+| - VARIABLE y2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE y2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE x3
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE x3
+| - - RELATION NatNum
+| - - - VARIABLE y2
+| - ~ 
+| - - = 
+| - - - VARIABLE x3
+| - - - VARIABLE y2
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE m2
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE n3
+| - = 
+| - - FUNCTION Add
+| - - - FUNCTION S
+| - - - - VARIABLE m2
+| - - - VARIABLE n3
+| - - FUNCTION S
+| - - - FUNCTION Add
+| - - - - VARIABLE m2
+| - - - - VARIABLE n3
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - FUNCTION Add
+| - - FUNCTION S
+| - - - VARIABLE m2
+| - - VARIABLE n3
+| - FUNCTION S
+| - - FUNCTION Add
+| - - - VARIABLE m2
+| - - - VARIABLE n3
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE n3
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - FUNCTION Add
+| - - - FUNCTION S
+| - - - - VARIABLE m2
+| - - - VARIABLE n3
+| - - FUNCTION S
+| - - - FUNCTION Add
+| - - - - VARIABLE m2
+| - - - - VARIABLE n3
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE n3
+====
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+====The set after factoring
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE n3
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE m2
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m2
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE m2
+| - - ~ 
+| - - - RELATION NatNum
+| - - - - VARIABLE n3
+| - = 
+| - - FUNCTION Add
+| - - - FUNCTION S
+| - - - - VARIABLE m2
+| - - - VARIABLE n3
+| - - FUNCTION S
+| - - - FUNCTION Add
+| - - - - VARIABLE m2
+| - - - - VARIABLE n3
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE m1
+| - = 
+| - - FUNCTION Add
+| - - - CONSTANT 0
+| - - - VARIABLE m1
+| - - VARIABLE m1
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - FUNCTION Add
+| - - CONSTANT 0
+| - - VARIABLE m1
+| - VARIABLE m1
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - FUNCTION Add
+| - - - CONSTANT 0
+| - - - VARIABLE m1
+| - - VARIABLE m1
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+====
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+====The set after factoring
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE m1
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE m1
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE m1
+| - = 
+| - - FUNCTION Add
+| - - - CONSTANT 0
+| - - - VARIABLE m1
+| - - VARIABLE m1
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - = 
+| - - VARIABLE m
+| - - VARIABLE n2
+| - ~ 
+| - - = 
+| - - - FUNCTION S
+| - - - - VARIABLE m
+| - - - FUNCTION S
+| - - - - VARIABLE n2
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+| = 
+| - VARIABLE m
+| - VARIABLE n2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - FUNCTION S
+| - - VARIABLE m
+| - FUNCTION S
+| - - VARIABLE n2
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - VARIABLE m
+| - - VARIABLE n2
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+====
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+====The set after factoring
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+====
+====The resolvent lst for this set
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+====
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - = 
+| - - FUNCTION S
+| - - - VARIABLE m
+| - - FUNCTION S
+| - - - VARIABLE n2
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - = 
+| - - VARIABLE m
+| - - VARIABLE n2
+| - ~ 
+| - - = 
+| - - - FUNCTION S
+| - - - - VARIABLE m
+| - - - FUNCTION S
+| - - - - VARIABLE n2
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| ~ 
+| - = 
+| - - CONSTANT 0
+| - - FUNCTION S
+| - - - VARIABLE n1
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| ~ 
+| - = 
+| - - CONSTANT 0
+| - - FUNCTION S
+| - - - VARIABLE n1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - CONSTANT 0
+| - FUNCTION S
+| - - VARIABLE n1
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| ~ 
+| - = 
+| - - CONSTANT 0
+| - - FUNCTION S
+| - - - VARIABLE n1
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE n
+| - RELATION NatNum
+| - - FUNCTION S
+| - - - VARIABLE n
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| RELATION NatNum
+| - FUNCTION S
+| - - VARIABLE n
+| ~ 
+| - RELATION NatNum
+| - - VARIABLE n
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - FUNCTION S
+| - - - VARIABLE n
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| RELATION NatNum
+| - VARIABLE n
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION NatNum
+| - - - VARIABLE n
+| - RELATION NatNum
+| - - FUNCTION S
+| - - - VARIABLE n
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| RELATION NatNum
+| - CONSTANT 0
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| RELATION NatNum
+| - CONSTANT 0
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - RELATION NatNum
+| - - CONSTANT 0
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| RELATION NatNum
+| - CONSTANT 0
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x2
+| - - - - VARIABLE y1
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE y1
+| - - - - VARIABLE z
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE z
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - VARIABLE x2
+| - VARIABLE z
+| ~ 
+| - = 
+| - - VARIABLE y1
+| - - VARIABLE z
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE z
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+| ~ 
+| - = 
+| - - VARIABLE y1
+| - - VARIABLE z
+====
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+====The set after factoring
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+====
+====The resolvent lst for this set
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE y1
+| - VARIABLE z
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE x2
+| - VARIABLE y1
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE y1
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - v 
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE x2
+| - - - - VARIABLE y1
+| - - ~ 
+| - - - = 
+| - - - - VARIABLE y1
+| - - - - VARIABLE z
+| - = 
+| - - VARIABLE x2
+| - - VARIABLE z
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE y
+| - - - VARIABLE x1
+| - = 
+| - - VARIABLE x1
+| - - VARIABLE y
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - VARIABLE x1
+| - VARIABLE y
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - VARIABLE x1
+| - - VARIABLE y
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+====
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+====The set after factoring
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+====
+====The resolvent lst for this set
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+====
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| = 
+| - VARIABLE y
+| - VARIABLE x1
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - = 
+| - - VARIABLE y
+| - - VARIABLE x1
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - = 
+| - - - VARIABLE y
+| - - - VARIABLE x1
+| - = 
+| - - VARIABLE x1
+| - - VARIABLE y
+==========================================
+
+Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Resolvent 2:
+| = 
+| - VARIABLE x
+| - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Printing disjunctions set #2
+| = 
+| - VARIABLE x
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Negated Disjunction2: 
+| ~ 
+| - = 
+| - - VARIABLE x
+| - - VARIABLE x
+====The new set of disjunctions not in these clauses:
+The NULLL clause
+====
+	---Exiting Resolve---
+Produces:
+| NULL 
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - = 
+| - - VARIABLE c
+| - - FUNCTION Add
+| - - - SKOLEM_FUNCTION $F1
+| - - - SKOLEM_FUNCTION $F
+Reprinting Resolvent 2:
+| = 
+| - VARIABLE x
+| - VARIABLE x

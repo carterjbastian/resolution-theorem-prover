@@ -1,0 +1,375 @@
+SYMBOL LIST (before):
+x	(variable)
+Frustrated	(relation)
+People	(relation)
+me	(constant)
+
+
+KNOWLEDGE BASE: (before transformation
+| ROOT 
+| - @ x
+| - - => 
+| - - - RELATION People
+| - - - - VARIABLE x
+| - - - RELATION Frustrated
+| - - - - VARIABLE x
+| - RELATION People
+| - - CONSTANT me
+| - ~ 
+| - - RELATION Frustrated
+| - - - CONSTANT me
+Looking at branch
+Found a null node
+It's the leftmost child
+
+
+KNOWLEDGE BASE (after transformation):
+| ROOT 
+| - v 
+| - - ~ 
+| - - - RELATION People
+| - - - - VARIABLE x
+| - - RELATION Frustrated
+| - - - VARIABLE x
+| - RELATION People
+| - - CONSTANT me
+| - ~ 
+| - - RELATION Frustrated
+| - - - CONSTANT me
+
+
+SYMBOL LIST (after):
+x	(variable)
+Frustrated	(relation)
+People	(relation)
+me	(constant)
+
+
+Proof:
+INITIAL CLAUSES:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+
+| RELATION People
+| - CONSTANT me
+
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+
+Every clause after this is derived by resolution of previous listed clauses
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Resolvent 2:
+| RELATION People
+| - CONSTANT me
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Printing disjunctions set #2
+| RELATION People
+| - CONSTANT me
+Disjunction1: 
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Negated Disjunction2: 
+| ~ 
+| - RELATION People
+| - - CONSTANT me
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Reprinting Resolvent 2:
+| RELATION People
+| - CONSTANT me
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Printing disjunctions set #2
+| RELATION Frustrated
+| - VARIABLE x
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Negated Disjunction2: 
+| ~ 
+| - RELATION Frustrated
+| - - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+====
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+====The set after factoring
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+====
+====The resolvent lst for this set
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+====
+Disjunction1: 
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Negated Disjunction2: 
+| RELATION People
+| - VARIABLE x
+	---Exiting Resolve---
+Produces:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+==========================================
+
+Resolvent 1:
+| RELATION People
+| - CONSTANT me
+Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| RELATION People
+| - CONSTANT me
+Printing disjunctions set #2
+| RELATION Frustrated
+| - VARIABLE x
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Disjunction1: 
+| RELATION People
+| - CONSTANT me
+Negated Disjunction2: 
+| ~ 
+| - RELATION Frustrated
+| - - VARIABLE x
+Disjunction1: 
+| RELATION People
+| - CONSTANT me
+Negated Disjunction2: 
+| RELATION People
+| - VARIABLE x
+====The new set of disjunctions not in these clauses:
+| RELATION Frustrated
+| - VARIABLE x
+====
+| RELATION Frustrated
+| - VARIABLE x
+====The set after factoring
+| RELATION Frustrated
+| - VARIABLE x
+====
+====The resolvent lst for this set
+| RELATION Frustrated
+| - VARIABLE x
+====
+	---Exiting Resolve---
+Produces:
+| RELATION Frustrated
+| - VARIABLE x
+
+
+Reprinting Resolvent 1:
+| RELATION People
+| - CONSTANT me
+Reprinting Resolvent 2:
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+
+
+NEW CLAUSES (iteration 1)
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+
+| RELATION Frustrated
+| - VARIABLE x
+
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+
+| RELATION People
+| - CONSTANT me
+
+| v 
+| - ~ 
+| - - RELATION People
+| - - - VARIABLE x
+| - RELATION Frustrated
+| - - VARIABLE x
+
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Resolvent 2:
+| RELATION Frustrated
+| - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION Frustrated
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION Frustrated
+| - - VARIABLE x
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION Frustrated
+| - VARIABLE x
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Resolvent 2:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Printing disjunctions set #2
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Disjunction1: 
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Negated Disjunction2: 
+| RELATION Frustrated
+| - CONSTANT me
+	---Exiting Resolve---
+Produces:
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Resolvent 2:
+| RELATION People
+| - CONSTANT me
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Printing disjunctions set #2
+| RELATION People
+| - CONSTANT me
+Disjunction1: 
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Negated Disjunction2: 
+| ~ 
+| - RELATION People
+| - - CONSTANT me
+====The new set of disjunctions not in these clauses:
+The NULLL clause
+====
+	---Exiting Resolve---
+Produces:
+| NULL 
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION People
+| - - VARIABLE x
+Reprinting Resolvent 2:
+| RELATION People
+| - CONSTANT me

@@ -1,0 +1,30 @@
+Proof of query:
+All of the following clauses are derived from the knowledge base by resolution.
+
+PREVIOUS CLAUSES (before iteration 3)
+~(King(x))
+~(Greedy(x))
+Evil(x)
+(~(King(x)) v ~(Greedy(x)))
+(Evil(x) v ~(King(x)))
+(Evil(x) v ~(Greedy(x)))
+~(Evil(John))
+Brother(Richard, John)
+Greedy(John)
+King(John)
+((~(King(x)) v ~(Greedy(x))) v Evil(x))
+
+
+FINAL CLAUSES (from iteration 3)
+Evil(x)
+~(Greedy(x))
+~(King(x))
+(Evil(x) v ~(Greedy(x)))
+(Evil(x) v ~(King(x)))
+(~(King(x)) v ~(Greedy(x)))
+{ } (empty clause)
+
+Having derived the empty clause with resolution, by the Ground Resolution
+Theorem, the query is proven.
+Note that each of the FINAL CLAUSES (including the empty clause) was
+derived by resolution on two of the PREVIOUS CLAUSES.

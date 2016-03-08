@@ -52,7 +52,7 @@ int resolution(FILE *fp, lst_node kb) {
   // Factor the original set of clauses
   // Loop forever
 //  while (++i > 0) {
-  while(++i < 3) {
+  while(++i < 5) {
     //fprintf(fp, "Inside while loop iteration %d\n", i);
     
     // Loop through each clause in the clauses set
@@ -93,7 +93,6 @@ int resolution(FILE *fp, lst_node kb) {
         fprintf(stdout, "Reprinting Resolvent 2:\n");
         print_lst(stdout, c2->val, 0);
         // if resolvents contains the empty clause, return true
-//        if (inSet(resolvents, empty_clause)) // DONE WITH PROOF
         /* WARNING: MAKE SURE YOU PRINT THE END OF THE PROOF */
         if (resolvents->val) {
           for (cSet *resolved = resolvents; resolved != NULL; resolved = resolved->next)
@@ -108,23 +107,31 @@ int resolution(FILE *fp, lst_node kb) {
             fprintf(fp, "All of the following clauses are derived from the knowledge base by resolution.\n");
 
 
-            fprintf(fp, "\n\nPREVIOUS CLAUSES (before iteration %d)\n", i);
+            fprintf(fp, "\nPREVIOUS CLAUSES (before iteration %d)\n", i);
             for (cSet *clause = clauses; clause != NULL; clause = clause->next) {
               if (clause->val) {
-                print_lst(fp, clause->val, 0);
+//                print_lst(fp, clause->val, 0);
+                print_clause(fp, clause->val);
+
                 fprintf(fp, "\n");
                 clause->val->right_sib = NULL;
               }
             }
 
             fprintf(fp, "\n\nFINAL CLAUSES (from iteration %d)\n", i);
-            for (cSet *clause = new; clause != NULL; clause = clause->next) {
+            for (cSet *clause = new->next; clause != NULL; clause = clause->next) {
               if (clause->val) {
-                print_lst(fp, clause->val, 0);
+//                print_lst(fp, clause->val, 0);
+                print_clause(fp, clause->val);
+
                 fprintf(fp, "\n");
                 clause->val->right_sib = NULL;
               }
             }
+
+//            print_lst(fp, new->val, 0);
+            print_clause(fp, new->val);
+            fprintf(fp, "\n");
 
             return 0;
 
@@ -145,7 +152,11 @@ int resolution(FILE *fp, lst_node kb) {
       fprintf(fp, "Resolution fails, as the new set after an iteration is a subset of the clauses already known.\n");
       return 1;
     } else {  // otherwise, join clauses with the new set and reiterate
-      clauses = joinSet(clauses, new);
+      for (cSet *toAdd = new; toAdd != NULL; toAdd = toAdd->next)
+        if (inSet(clauses, toAdd->val) == 0)
+          clauses = addSet(clauses, toAdd->val);
+
+//      clauses = joinSet(clauses, new);
     }
 
     fprintf(stdout, "\n\nNEW CLAUSES (iteration %d)\n", i);

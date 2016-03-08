@@ -1,0 +1,84 @@
+SYMBOL LIST (before):
+x	(variable)
+Frustrated	(relation)
+me	(constant)
+
+
+KNOWLEDGE BASE: (before transformation
+| ROOT 
+| - @ x
+| - - RELATION Frustrated
+| - - - VARIABLE x
+| - ~ 
+| - - RELATION Frustrated
+| - - - CONSTANT me
+Looking at branch
+Found a null node
+It's the leftmost child
+
+
+KNOWLEDGE BASE (after transformation):
+| ROOT 
+| - RELATION Frustrated
+| - - VARIABLE x
+| - ~ 
+| - - RELATION Frustrated
+| - - - CONSTANT me
+
+
+SYMBOL LIST (after):
+x	(variable)
+Frustrated	(relation)
+me	(constant)
+
+
+Proof:
+INITIAL CLAUSES:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+
+| RELATION Frustrated
+| - VARIABLE x
+
+Every clause after this is derived by resolution of previous listed clauses
+==========================================
+
+Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Resolvent 2:
+| RELATION Frustrated
+| - VARIABLE x
+	---Entering Resolve---
+Printing disjunctions set #1
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Printing disjunctions set #2
+| RELATION Frustrated
+| - VARIABLE x
+Disjunction1: 
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Negated Disjunction2: 
+| ~ 
+| - RELATION Frustrated
+| - - VARIABLE x
+====The new set of disjunctions not in these clauses:
+The NULLL clause
+====
+	---Exiting Resolve---
+Produces:
+| NULL 
+
+
+Reprinting Resolvent 1:
+| ~ 
+| - RELATION Frustrated
+| - - CONSTANT me
+Reprinting Resolvent 2:
+| RELATION Frustrated
+| - VARIABLE x

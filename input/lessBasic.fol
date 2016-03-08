@@ -3,7 +3,7 @@ RS: People;
 RS: Frustrated;
 VS: x;
 
-@x People(x) <=> Frustrated(x);
+@x People(x) => Frustrated(x);
 People(me);
 
 QS: Frustrated(me);
