@@ -52,7 +52,7 @@ int resolution(FILE *fp, lst_node kb) {
   // Factor the original set of clauses
   // Loop forever
 //  while (++i > 0) {
-  while(++i < 5) {
+  while(++i < MAX_DEPTH) {
     //fprintf(fp, "Inside while loop iteration %d\n", i);
     
     // Loop through each clause in the clauses set

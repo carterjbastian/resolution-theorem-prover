@@ -2,12 +2,13 @@ CC = gcc
 CFLAGS = -g
 BISONFL = -d -v
 FLEXFLAGS = -ll
+# use -lfl for Linux; -ll for OSX
 
 .PHONY: clean 
 
 .SUFFIXES: .c
 
-parse : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o resolution.o set.o
+prover : lex.yy.o parseKB.tab.o lst.o transformations.o parseKB_main.o resolution.o set.o
 	$(CC) -o $@ $(CFLAGS) lex.yy.o parseKB.tab.o lst.o transformations.o set.o resolution.o parseKB_main.o  $(FLEXFLAGS)
 
 unifyTest : lex.yy.o parseKB.tab.o lst.o transformations.o unify_main.o resolution.o set.o
@@ -45,7 +46,7 @@ parseKB_main.o : parseKB_main.c
 	$(CC) -c $(CFLAGS) $<
 
 clean :
-	rm -f parse *.o parseKB.tab.* lex.yy.c *.output unifyTest
+	rm -f parse prover *.o parseKB.tab.* lex.yy.c *.output unifyTest *.out
 
 depend :
 	makedepend -- $(CFLAGS) -- parseKB_main.c

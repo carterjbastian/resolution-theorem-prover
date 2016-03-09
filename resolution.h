@@ -11,6 +11,8 @@
 #include "set.h"
 #include "lst.h"
 
+#define   MAX_DEPTH   10
+
 int resolution(FILE *fp, lst_node kb);
 
 cSet *resolve(lst_node c1, lst_node c2);

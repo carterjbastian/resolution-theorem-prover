@@ -1,12 +1,205 @@
 A generalized resolution-based theorem prover for first-order logic.
 
 Author: Carter J. Bastian
-        March 2016, 16W,
+        March 2016. 16W.
 
 Originally written for CS76 final project (chosen topic)
 
 
-Notes, Quirks, and Irregularities:
+======================================================================================
+                      Dependencies and OS-dependent Builds:
+======================================================================================
+
+  In order to build the code, you must have flex (version 2.5 or higher) and
+  bison (version 3.0.2). Older versions of this software may not compile correctly.
+
+  If you are running the code on an OSX platform, you can leave the Makefile as it is.
+  If you are running the code on Unix, you must change the FLEXFLAGS variable in the
+    Makefile form "-ll" to "-lfl".
+
+
+
+======================================================================================
+            The FOL Compiler (Creating Knowledgebases and Queries):
+======================================================================================
+
+- This project includes a simplistic First-Order Logic (fol) compiler. Any 
+  sentence that can be written in fol can be added to a knowledge base for
+  this compiler.
+
+- The fol compiler uses lexical and grammatical analysis of a .fol file to 
+  build a logical syntax tree. All further operations (including conversion to
+  conjunctive normal form and resolution itself) work with this tree representation
+  of the knowledge base.
+
+- To create a knowledgebase and search for a proof, you must make a .fol
+  file as described below. This file must have the following three sections:
+    I. Symbol Declarations
+    II. Knowledge Base
+    III. Query
+
+I. Symbol Declarations
+  - Any symbol (variable, constant, relation, or function) used in the knowledge
+    base or query must first be declared in the symbol declaration section
+    of the .fol file.
+
+  - To declare a constant, precede the constant name with "CS:" (constant symbol)
+    EG. CS: 0;
+
+  - To declare a variable, precede the variable name with "VS:"
+    EG. VS: x;
+
+  - To declare a relation, precede the relation name with "RS:"
+    EG. RS: NaturalNumber;
+
+  - To declare a function, precede the function name with "FS:"
+    EG. FS: Add;
+
+
+II. Knowledge Base
+  - A knowledge base can consist of any symbol in first-order logic. Each sentence
+    consists of a sentence ended by a semicolon.
+
+  - In addition to symbols defined in the symbol declarations section, all of 
+    The follow logical symbols are available:
+      =>      (implication)
+      <=>     (logical equivalence)
+      ^       (conjunction)
+      v       (disjunction)
+      ~       (negation)
+      ()[]    (grouping brackets)
+      =       (instance equality)*
+      @       (universal quantifier)
+      #       (existential quantifier)
+
+    * Note that in order to use equality, you must axiomatize it by hand (as 
+      mentioned in the "Notes, Quirks, and Irregularities section". To do so,
+      add the following sentences to the knowledge base (and their corresponding
+      symbols to the symbol declarations):
+        @x x = x;
+        @x @y y = x => x = y;
+        @x @y @z x = y ^ y = z => x = z;
+
+      Also add one sentence to the knowledge base for each function and relation.
+      See input/math.fol for an example of how to do this.
+
+III. Query 
+  - Precede the sentence to be proven with "QS:".
+  - For example,
+    QS: @a @b #c NatNum(a) ^ NatNum(b) ^ NatNum(c) ^ c = Add(a,b) => c = Add(b, a);
+    is a query encoding the commutative property of addition. (see input/math.fol)
+
+SYNTAX:
+  - All statements are separated by semicolons.
+  - Valid identifiers for symbols consist of numbers and/or letters.
+  - Identifiers are case sensitive.
+  - Whitespace is ignored.
+  - c-style block comments are permitted (and ignored) within .fol files.
+
+
+
+======================================================================================
+                          How to Run the Theorem Prover:
+======================================================================================
+
+I. Running the theorem prover
+  1. In the terminal, move to the main directory (/theorem_prover)
+  2. Build the code by running "make".
+  3. Run ./prover, pipe the .fol file in as input, and pipe the output to a 
+    .out file.
+
+EXAMPLE:
+  cd theorem_prover
+  make
+  ./prover < input/math.fol > debug.out
+
+
+II. Understanding the results of the theorem prover.
+  - The resulting proof (if found) will be printed in a file (in the working 
+    directory) titled "proof.out".
+    This will consist of the set of (conjoined) clauses derived from the knowledge
+    base before the iteration in which the null (empty) clause was derived and
+    then the set of clauses derived in the iteration in which the proof was
+    completed (including the empty clause). This is a formal and complete proof
+    by resolution and contradiction.
+
+  - Tracking the pairs of clauses from which each resolvent derives requires a 
+    significant amount of memory. As such, the final proof does not explicitly 
+    show the clauses from which the empty clause was derived. 
+
+  - However, to combat this weakness, a large amount of debugging information
+    is printed to the file to which stdout output is redirected. This "debugging"
+    information consists of a pictoral representation of each resolving step.
+
+  - To find the clauses from which the empty clause resolved, search the debugging
+    information for the phrase "NULL". 
+
+  - At the top of the debugging information is the initial logical syntax tree
+    created by the fol compiler as well as a pictoral representation of the 
+    knowledge base after conversion to conjunctive normal form.
+
+
+
+======================================================================================
+                            Code Layout and Structure:
+======================================================================================
+
+Below is a brief description of the contents of the theorem_prover/ directory.
+At a high level, the theorem prover is broken into three semi-independent pieces.
+Each source file will be described with reference to this natural division.
+
+I. The FOL parser - Parses .fol-file input into a logical syntax tree
+  FILES:
+    - KBscan.l - Lexical analysis of .fol files (the lexer)
+    - tokentype.h - A header with token definitions necessary for the lexer 
+    - parseKB.y - The Backus-Nuar enumeration of the FOL grammar (the parser)
+    - lst.h - Defines the logical syntax tree (lst_node) dataype 
+    - lst.c - Implements the functions that create and operate on lts's
+
+II. CNF Transformer - Converts the knowledge base lst to conjunctive normal form
+  FILES:
+    - transformations.h - function definitions to operate on and transform lst's 
+    - transformations.c - implementations of functions to convert an lst to CNF
+
+III. Resolver
+  FILES:
+    - set.h - definitions of datatypes used in resolution (set and substitution)
+    - set.c - implementations of set and substitution datatypes for resolution
+    - resolution.h - function prototypes for resolution theorem proving
+    - resolution.c - implementation of resolution-based theorem proving functions
+    - prover.c - the main method which uses the methods in files listed above to
+                  prove theorems (compiled to the ./prover executable).
+
+IV. Miscellaneous Files Directories
+
+input/
+  Sample .fol KB-query inputs including (in order of increasing complexity):
+    1. basic.fol - proves a statement in the knowledge base (propositional)
+    2. lessBasic.fol - proves an instance of a universally quantified variable
+    3. kings.fol - the textbook (AIMA) example of fol resolution theorem-proving
+    4. propositional.fol - a more complex propositional query from the textbook
+                            (Based on the "wumpus" problem).
+    5. math.fol - Arithmetic setup for proving the commutative property of addition
+    6. associativity.fol - Same as above, but proves the associative property of
+                            addition.
+
+output/
+  Consists of a sub-directory for each sample input from the input/ directory.
+  Each sub-directory consists of two files: 
+    1. the debug.out file with debugging information and detailed resolution tracking 
+    2. the proof.out file with the string-representation of the proof process.
+
+unit_testing/
+  A series of antiquated files used for unit-testing at some point in the 
+  development process. These can be safely ignored, but are worth including
+  for those looking to contribute.
+
+
+
+======================================================================================
+                        Notes, Quirks, and Irregularities:
+======================================================================================
+
 - As per section 9.5.5 of AIMA, one must axiomatize equality by hand. This
   is counter-intuitive, but implementing demodulation or paramodulation is 
   beyond the scope of this project.
@@ -34,4 +227,25 @@ Notes, Quirks, and Irregularities:
     where xx is a number 1-99
     As a result, you can have up to 99 skolem functions and no more
 
+- Because of the exponential growth in proven clauses, the while-loop (which may
+  technically run forever) is limited to a maximum iteration depth defined in
+  in resolution.h file. To increase this depth limit, modify the value of the 
+  MAX_DEPTH constant therein.
 
+
+
+======================================================================================
+                                Outstanding Issues:
+======================================================================================
+The following are issues that have yet to be resolved:
+  - Garbage collection is almost entirely neglected and needs major improvement.
+    Memory leaks are rampant. Be forewarned.
+
+  - Ideally, a better representation of trees could be used in the debugging information.
+
+  - lst deep vs. shallow copying is sketchy at best, and downright hacky at best.
+
+  - There are plenty of null-checks on the cSet datatype. In actuallity, these are
+    bandaid solutions to segmentation faults that were occurring due to duplication
+    and empty-valued cSet objects. This solution is not principled and may
+    cause issues down the road.
