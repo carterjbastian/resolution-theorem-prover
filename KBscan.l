@@ -25,11 +25,20 @@ letter [A-Za-z]
 digit [0-9]
 id ({letter}|{digit}|_)*
 
+%x block_comment
+
 %option yylineno noyywrap
 
 %%
 
 {white}       /* Skip white space */
+
+
+  /* Start Condition for block comments */
+"/*"         { BEGIN(block_comment); }
+<block_comment>[^*]*   /* Skip everything that's not a * */
+<block_comment>"*"+[^*/]*      /* Skip *s not followed by a / */
+<block_comment>"*/"  { BEGIN(INITIAL); } /* End the comment */
 
   /* Declaration Lexical Symbols */
 "CS"          return CONST_DEC_T;
